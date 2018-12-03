@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Evaans11/4HC3Project/issues"
   },
-  "homepage": "https://github.com/Evaans11/4HC3Project#readme"
+  "homepage": "https://github.com/Evaans11/4HC3Project#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
