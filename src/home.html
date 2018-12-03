@@ -36,26 +36,70 @@
   		</div>
 
   		<div class="row">
-  			<div class="col-md-12 bg-light">
+  			<div class="col-md-12 bg-dark text-light">
   				<h2>Specials</h2>
   				<div class="row">
-  					<div class="col-md-5 bg-light">
-  						<a class="btn btn-primary btn-lg btn-block" href="#" role="button">Special 1</a>
+            <div class="col-md-1 bg-dark"></div>
+  					<div class="col-md-4 bg-dark">
+  						<div class="dropdown">
+                <button class="btn btn-light btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <h4>3 Cheese Pizzas Special: $15</h4><br>
+                  <img src="../images/pizza/3pizza.jpg" class="img-fluid rounded mx-auto d-block">
+                </button>
+                <div class="dropdown-menu bg-light" aria-labelledby="dropdownMenuButton">
+                  <p class="dropdown-item text-center">Add to cart?</p>
+                  <button class="btn btn-success dropdown-item" onclick="threePizzaYes()">Yes</button>
+                  <button class="btn btn-danger dropdown-item">No</button>
+                </div>
+              </div>
   					</div>
-  					<div class="col-md-2 bg-light"></div>
-  					<div class="col-md-5 bg-light">
-  						<a class="btn btn-primary btn-lg btn-block" href="#" role="button">Special 2</a>
+  					<div class="col-md-2 bg-dark"></div>
+  					<div class="col-md-4 bg-dark">
+  						<div class="dropdown">
+                <button class="btn btn-light btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <h4>Deluxe Pizza Special: $12</h4><br>
+                  <img src="../images/pizza/deluxe.jpg" class="img-fluid rounded mx-auto d-block">
+                </button>
+                <div class="dropdown-menu bg-light" aria-labelledby="dropdownMenuButton">
+                  <p class="dropdown-item text-center">Add to cart?</p>
+                  <button class="btn btn-success dropdown-item" onclick="deluxeYes()">Yes</button>
+                  <button class="btn btn-danger dropdown-item">No</button>
+                </div>
+              </div>
   					</div>
+            <div class="col-md-1 bg-dark"></div>
   				</div>
           <div class="row">
-            <div class="col-md-5 bg-light">
-              <a class="btn btn-primary btn-lg btn-block" href="#" role="button">Special 3</a>
+            <div class="col-md-1 bg-dark"></div>
+            <div class="col-md-4 bg-dark">
+              <div class="dropdown">
+                <button class="btn btn-light btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <h4>Mini Pizza Speical: $8</h4><br>
+                  <img src="../images/pizza/mini.jpg" class="img-fluid rounded mx-auto d-block">
+                </button>
+                <div class="dropdown-menu bg-light" aria-labelledby="dropdownMenuButton">
+                  <p class="dropdown-item text-center">Add to cart?</p>
+                  <button class="btn btn-success dropdown-item" onclick="miniYes()">Yes</button>
+                  <button class="btn btn-danger dropdown-item">No</button>
+                </div>
+              </div>
             </div>
-            <div class="col-md-2 bg-light"></div>
-            <div class="col-md-5 bg-light">
-              <a class="btn btn-primary btn-lg btn-block" href="#" role="button">Special 4</a>
+            <div class="col-md-2 bg-dark"></div>
+            <div class="col-md-4 bg-dark">
+              <div class="dropdown">
+                <button class="btn btn-light btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <h4>Pizza Slice Speical: $5</h4><br>
+                  <img src="../images/pizza/slice.jpg" class="img-fluid rounded mx-auto d-block">
+                </button>
+                <div class="dropdown-menu bg-light" aria-labelledby="dropdownMenuButton">
+                  <p class="dropdown-item text-center">Add to cart?</p>
+                  <button class="btn btn-success dropdown-item" onclick="sliceYes()">Yes</button>
+                  <button class="btn btn-danger dropdown-item">No</button>
+                </div>
+              </div>
             </div>
           </div>
+          <div class="col-md-1 bg-dark"></div>
   			</div>
   		</div>
 
@@ -83,5 +127,69 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+
+    <script>
+      function threePizzaYes(func)
+      {
+        var name = "Cheese Pizza (Special)";
+        var size = "s";
+        var price = 5;
+
+        sendData(name, size, price);
+        sendData(name, size, price);
+        sendData(name, size, price);
+      }
+
+      function deluxeYes(func)
+      {
+        var name = "Deluxe Pizza (Special)";
+        var size = "m";
+        var price = 12;
+
+        sendData(name, size, price);
+      }
+
+      function miniYes(func)
+      {
+        var name = "Mini Pizza (Special)";
+        var size = "n";
+        var price = 8;
+
+        sendData(name, size, price);
+      }
+
+      function sliceYes(func)
+      {
+        var name = "Slice (Special)";
+        var size = "n";
+        var price = 5;
+
+        sendData(name, size, price);
+      }
+
+      function sendData(name, size, price)
+      {
+        var xmlhttp;
+        if (window.XMLHttpRequest)
+        {// code for IE7+, Firefox, Chrome, Opera, Safari
+          xmlhttp=new XMLHttpRequest();
+        }
+        else
+        {// code for IE6, IE5
+          xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange=function()
+        {
+          if (xmlhttp.readyState==4 && xmlhttp.status==200)
+          {
+            alert('Item successfully added to cart')
+          }
+        }
+
+        xmlhttp.open("POST","http://localhost:3000/cart/add",true);
+        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        xmlhttp.send("name=" + name + "&size=" + size + "&price=" + price);
+      }
+    </script>
   </body>
 </html>
