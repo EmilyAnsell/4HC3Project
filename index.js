@@ -18,6 +18,6 @@ app.get('/cart/view', (req, res) =>{
 app.post('/sides/add', (req, res) =>{
 	console.log(req.body);
 	sides.push(req.body);
-	res.status(200).end('yes');
+	res.status(200).end("yes");
 });
-app.listen(port, () => console.log('Example app listening on port' + port + '!'));
+app.listen(port, () => console.log('Example app listening on port ' + port + '!'));
