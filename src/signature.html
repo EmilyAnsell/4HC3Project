@@ -1,162 +1,305 @@
+<!DOCTYPE html>
 <html>
-
-<style>
-.btn-circle {
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  padding: 6px 0;
-  font-size: 12px;
-  line-height: 1.428571429;
-  border-radius: 15px;
-}
-.btn-circle.btn-s {
-  width: 37px;
-  height: 37px;
-  padding: 6px 10px;
-  font-size: 16px;
-  line-height: 1.33;
-  border-radius: 20px;
-}
-.btn-circle.btn-m {
-  width: 50px;
-  height: 50px;
-  padding: 10px 16px;
-  font-size: 18px;
-  line-height: 1.33;
-  border-radius: 25px;
-}
-.btn-circle.btn-lg {
-  width: 70px;
-  height: 70px;
-  padding: 16px 16px;
-  font-size: 24px;
-  line-height: 1.33;
-  border-radius: 35px;
-}
-.btn-circle.btn-xl {
-  width: 85px;
-  height: 85px;
-  padding: 17px 16px;
-  font-size: 30px;
-  line-height: 1.33;
-  border-radius: 65px;
-}
-
-
-</style>
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <style>
+
+  .btn-circle {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 15px;
+  }
+  .btn-circle.btn-s {
+    width: 37px;
+    height: 37px;
+    padding: 6px 10px;
+    font-size: 16px;
+    line-height: 1.33;
+    border-radius: 20px;
+  }
+  .btn-circle.btn-m {
+    width: 50px;
+    height: 50px;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.33;
+    border-radius: 25px;
+  }
+  .btn-circle.btn-lg {
+    width: 70px;
+    height: 70px;
+    padding: 16px 16px;
+    font-size: 24px;
+    line-height: 1.33;
+    border-radius: 35px;
+  }
+  .btn-circle.btn-xl {
+    width: 85px;
+    height: 85px;
+    padding: 17px 16px;
+    font-size: 30px;
+    line-height: 1.33;
+    border-radius: 65px;
+  }
+
+  </style>
+
+
+  <title>Pizza4U</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-
-
-
-  <script>
-
-  function draw(that){
-    console.log(that.id);
-      // document.getElementById("choice").innerHTML = that.value;
-  }
-
-  //
-  $(document).ready(function(){
-    $("#collapseOne").on("hide.bs.collapse", function(){
-      $(".test").html('<div>Pick a Size <span style="float:right;"><span class="glyphicon glyphicon-chevron-right"></span></span>              </div>');
-  
-      // document.getElementById("icon").innerHTML = "+";
-    });
-    $("#collapseOne").on("show.bs.collapse", function(){
-      $(".test").html('<div>Pick a Size <span style="float:right;"><span class="glyphicon glyphicon-chevron-down"></span></span>              </div>');
-      // document.getElementById("icon").innerHTML = "-";
-
-    });
-  });
-
-  </script>
-
-
-
-  <title>Pizza4u</title>
 </head>
 <body>
 
 
+  <script>
+
+  function sizeCheck(that)
+  {
+    size = that.value;
+  
+    console.log(size);
+    return size;
+
+    // sendData(name, size, price);
+  }
+//If THis.hide.bs.collapse then + or -
+  $(document).ready(function(){
+    //collapse 1
+    $("#collapseOne").on("hide.bs.collapse", function(){
+      $(".accordion1").html('<div>Meat Lovers Pizza <span style="float:right;"> <font size="+2"> +</font></span>              </div>');
+    });
+    $("#collapseOne").on("show.bs.collapse", function(){
+      $(".accordion1").html('<div>Meat Lovers Pizza <span style="float:right;"> <font size="+2"> -</font></span></span>              </div>');
+    });
+//collapse 2
+    $("#collapseTwo").on("hide.bs.collapse", function(){
+      $(".accordion2").html('<div>Hawaiian Pizza <span style="float:right;"> <font size="+2"> +</font></span>     </div>');
+
+    });
+    $("#collapseTwo").on("show.bs.collapse", function(){
+      $(".accordion2").html('<div>Hawaiian Pizza <span style="float:right;"> <font size="+2"> -</font></span></span>              </div>');
+    });
+//collapse 3
+    $("#collapseThree").on("hide.bs.collapse", function(){
+      $(".accordion3").html('<div>Veggie Pizza <span style="float:right;"> <font size="+2"> +</font></span></div>');
+
+    });
+    $("#collapseThree").on("show.bs.collapse", function(){
+      $(".accordion3").html('<div>Veggie Pizza <span style="float:right;"><font size="+2"> -</font> </span></span></div>');
+    });
+//collapse 4
+    $("#collapseFour").on("hide.bs.collapse", function(){
+      $(".accordion4").html('<div>Canadian Pizza <span style="float:right;"><font size="+2"> +</font>  </span></div>');
+
+    });
+    $("#collapseFour").on("show.bs.collapse", function(){
+      $(".accordion4").html('<div>Canadian Pizza <span style="float:right;"> <font size="+2"> -</font> </span></span></div>');
+    });
+//collapse 5
+    $("#collapseFive").on("hide.bs.collapse", function(){
+      $(".accordion5").html('<div>Pick Toppings <span style="float:right;"> <font size="+2"> +</font>  </span></div>');
+
+    });
+    $("#collapseFive").on("show.bs.collapse", function(){
+      $(".accordion5").html('<div>Pick Toppings <span style="float:right;"><font size="+2"> -</font></span></span></div>');
+    });
+
+// var test = document.getElementsByName("size").value;
+// console.log(test);
+
+  });
+
+
+
+
+  </script>
 
   <nav class="navbar sticky-top navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">PIZZA4U LOGO</a>
+    <a class="navbar-brand" href="home.html"><img src="../images/Pizza4u-W.png" height="60%" width="30%"> </a>
+    <a class="navbar-brand" href="signature.html"> Signiture Pizza </a>
+    <a class="navbar-brand" href="#"> Specials </a>
+    <a class="navbar-brand" href="sides.html"> Sides </a>
+    <a class="navbar-brand" href="#"> <i style='font-size:24px' class='fas'> &#xf07a;   </i> </a>
+
   </nav>
+</br>
 
+  <div class="container">
 
+    <div id="accordion">
+      <div class="card">
+        <div class="card-header">
+          <a data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="accordion1">
+            <div>
+              Meat Lovers Pizza <span style="float:right;"><font size="+2"> +</font> </span>
+            </div>
+            </a>
+        </div>
+        <div id="collapseOne" class="collapse" data-parent="#accordion">
 
+          <div class="card-body">
+            Pepperoni, Ham, Sausage and Bacon.
+            <span style="float: right;">
+              <form>
+                <div class="btn-group-toggle" data-toggle="buttons">
+                  <b>Available Sizes:</b>
+                  <label class="btn btn-secondary btn-circle btn-s active">
+                    <input type="radio" name="size" id="Small" value="Small" autocomplete="off" onchange="sizeCheck(this)"> S
+                  </label>
+                  <label class="btn btn-secondary btn-circle btn-m">
+                    <input type="radio" name="size" id="Medium" value="Medium" onchange="sizeCheck(this)" autocomplete="off"> M
+                  </label>
+                  <label class="btn btn-secondary btn-circle btn-lg">
+                    <input type="radio" name="size" id="Large" autocomplete="off" value="Large" onchange="sizeCheck(this)"> L
+                  </label>
+                  <label class="btn btn-secondary btn-circle btn-xl">
+                    <input type="radio" name="size" id="X-Large" autocomplete="off" value="Extra Large" onchange="sizeCheck(this)"> XL
+                  </label>
+                </div>
 
+              <!-- <p id="choice"></p> -->
 
-<div class="accordion" id="accordionExample">
- 
-  <div class="card">
-    <div class="card-header" id="headingTwo">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Meat Lovers
-        </button>
-      </h5>
-    </div>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-      <div class="card-body">
-        <form>
-		  Pepperoni, Italian Sausage, Bacon
-          <div class="btn-group-toggle" data-toggle="buttons" onclick="draw(this);">
-            <b>Available Sizes:</b>
-            <label class="btn btn-secondary btn-circle btn-s">
-              <input type="radio" name="options" id="Small" autocomplete="off" value="Small"> S
-            </label>
-            <label class="btn btn-secondary btn-circle btn-m">
-              <input type="radio" name="options" id="Medium" autocomplete="off" value="Medium"> M
-            </label>
-            <label class="btn btn-secondary btn-circle btn-lg">
-              <input type="radio" name="options" id="Large" autocomplete="off" value="Large"> L
-            </label>
-            <label class="btn btn-secondary btn-circle btn-xl">
-              <input type="radio" name="options" id="X-Large" autocomplete="off" value="Extra Large"> XL
-            </label>
+              </form>
+            <a class="btn btn-primary" href="#" role="button">Customize</a>
+            <a class="btn btn-primary" href="#" role="button">Add to Order</a>
+            </span>
           </div>
+        </div>
+        <div class="card">
+        <div class="card-header">
+          <a data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" class="accordion2">
+            <div>
+              Hawaiian Pizza <span style="float:right;"><font size="+2"> +</font> </span>
+            </div>
+            </a>
+        </div>
+        <div id="collapseTwo" class="collapse" data-parent="#accordion">
 
-          <p id="choice"></p>
-        </form>
+          <div class="card-body">
+            Ham and Pineapple.
+            <span style="float: right;">
+              <form>
+                <div class="btn-group-toggle" data-toggle="buttons">
+                  <b>Available Sizes:</b>
+                  <label class="btn btn-secondary btn-circle btn-s active">
+                    <input type="radio" name="size" id="Small" value="Small" autocomplete="off" onchange="sizeCheck(this)"> S
+                  </label>
+                  <label class="btn btn-secondary btn-circle btn-m">
+                    <input type="radio" name="size" id="Medium" value="Medium" onchange="sizeCheck(this)" autocomplete="off"> M
+                  </label>
+                  <label class="btn btn-secondary btn-circle btn-lg">
+                    <input type="radio" name="size" id="Large" autocomplete="off" value="Large" onchange="sizeCheck(this)"> L
+                  </label>
+                  <label class="btn btn-secondary btn-circle btn-xl">
+                    <input type="radio" name="size" id="X-Large" autocomplete="off" value="Extra Large" onchange="sizeCheck(this)"> XL
+                  </label>
+                </div>
 
+              <!-- <p id="choice"></p> -->
+
+              </form>
+            <a class="btn btn-primary" href="#" role="button">Customize</a>
+            <a class="btn btn-primary" href="#" role="button">Add to Order</a>
+            </span>
+          </div>
+        </div>
+        <div class="card">
+        <div class="card-header">
+          <a data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree" class="accordion3">
+            <div>
+              Veggie Pizza <span style="float:right;"><font size="+2"> +</font> </span>
+            </div>
+            </a>
+        </div>
+        <div id="collapseThree" class="collapse" data-parent="#accordion">
+
+          <div class="card-body">
+            Peppers, Mushrooms and Spinach.
+          </div>
+            <span style="float: right;">
+              <form>
+                <div class="btn-group-toggle" data-toggle="buttons">
+                  <b>Available Sizes:</b>
+                  <label class="btn btn-secondary btn-circle btn-s active">
+                    <input type="radio" name="size" id="Small" value="Small" autocomplete="off" onchange="sizeCheck(this)"> S
+                  </label>
+                  <label class="btn btn-secondary btn-circle btn-m">
+                    <input type="radio" name="size" id="Medium" value="Medium" onchange="sizeCheck(this)" autocomplete="off"> M
+                  </label>
+                  <label class="btn btn-secondary btn-circle btn-lg">
+                    <input type="radio" name="size" id="Large" autocomplete="off" value="Large" onchange="sizeCheck(this)"> L
+                  </label>
+                  <label class="btn btn-secondary btn-circle btn-xl">
+                    <input type="radio" name="size" id="X-Large" autocomplete="off" value="Extra Large" onchange="sizeCheck(this)"> XL
+                  </label>
+                </div>
+
+              <!-- <p id="choice"></p> -->
+
+              </form>
+            <a class="btn btn-primary" href="#" role="button">Customize</a>
+            <a class="btn btn-primary" href="#" role="button">Add to Order</a>
+            </span>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header" id="headingThree">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          Pick a Sause
-        </button>
-      </h5>
-    </div>
-    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-      <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+        <div class="card">
+        <div class="card-header">
+          <a data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour" class="accordion4">
+            <div>
+              Canadian Pizza <span style="float:right;"><font size="+2"> +</font> </span>
+            </div>
+            </a>
+        </div>
+        <div id="collapseFour" class="collapse" data-parent="#accordion">
+
+          <div class="card-body">
+            Pepperoni, Bacon and Mushrooms.
+            <span style="float: right;">
+              <form>
+                <div class="btn-group-toggle" data-toggle="buttons">
+                  <b>Available Sizes:</b>
+                  <label class="btn btn-secondary btn-circle btn-s active">
+                    <input type="radio" name="size" id="Small" value="Small" autocomplete="off" onchange="sizeCheck(this)"> S
+                  </label>
+                  <label class="btn btn-secondary btn-circle btn-m">
+                    <input type="radio" name="size" id="Medium" value="Medium" onchange="sizeCheck(this)" autocomplete="off"> M
+                  </label>
+                  <label class="btn btn-secondary btn-circle btn-lg">
+                    <input type="radio" name="size" id="Large" autocomplete="off" value="Large" onchange="sizeCheck(this)"> L
+                  </label>
+                  <label class="btn btn-secondary btn-circle btn-xl">
+                    <input type="radio" name="size" id="X-Large" autocomplete="off" value="Extra Large" onchange="sizeCheck(this)"> XL
+                  </label>
+                </div>
+
+              <!-- <p id="choice"></p> -->
+
+              </form>
+            <a class="btn btn-primary" href="#" role="button">Customize</a>
+            <a class="btn btn-primary" href="#" role="button">Add to Order</a>
+            </span>
+          </div>
+        </div>
       </div>
-    </div>
   </div>
-</div>
 
 
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  </body>
+
+</body>
 </html>
