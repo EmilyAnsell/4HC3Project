@@ -15,11 +15,12 @@ app.use(function(req, res, next) {
 });
 app.get('/', (req, res) => res.send('Hello World!'));
 app.post('/login', (req, res) => {
-	fs.readFile('users.json', function (err, data) {
+	fs.readFile('src/users.json', 'utf8', function (err, data) {
 		if (err) throw err;
+		let username = Object.keys(req.body)[0];
 		obj = JSON.parse(data);
-		if(obj[req.body] !== undefined){
-			currentUser = obj[req.body];
+		if(obj[username] !== undefined){
+			currentUser = obj[username];
 			res.status(200).end("Login successful");
 		} else {
 			res.status(404).end("User not found");
