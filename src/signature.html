@@ -66,6 +66,23 @@
 
 
   <script>
+  function customizeMeatLovers(){
+    var size = $("#collapseOne .active input").val();
+    window.location.href = 'customize.html?signature=MeatLovers&size='+size;
+  }
+  function customizeHawaiian(){
+    var size = $("#collapseTwo .active input").val();
+    window.location.href = 'customize.html?signature=Hawaiian&size='+size;
+  }
+  function customizeVeggie(){
+    var size = $("#collapseThree .active input").val();
+    window.location.href = 'customize.html?signature=Veggie&size='+size;
+  }
+  function customizeCanadian(){
+    var size = $("#collapseFour .active input").val();
+    window.location.href = 'customize.html?signature=Canadian&size='+size;
+  }
+
 
   function sizeCheck(that)
   {
@@ -167,14 +184,14 @@
                     <input type="radio" name="size" id="Large" autocomplete="off" value="Large" onchange="sizeCheck(this)"> L
                   </label>
                   <label class="btn btn-secondary btn-circle btn-xl">
-                    <input type="radio" name="size" id="X-Large" autocomplete="off" value="Extra Large" onchange="sizeCheck(this)"> XL
+                    <input type="radio" name="size" id="X-Large" autocomplete="off" value="ExtraLarge" onchange="sizeCheck(this)"> XL
                   </label>
                 </div>
 
               <!-- <p id="choice"></p> -->
 
               </form>
-            <a class="btn btn-primary" href="#" role="button">Customize</a>
+            <a class="btn btn-primary" onclick="customizeMeatLovers()" role="button">Customize</a>
             <a class="btn btn-primary" href="#" role="button">Add to Order</a>
             </span>
           </div>
@@ -205,14 +222,14 @@
                     <input type="radio" name="size" id="Large" autocomplete="off" value="Large" onchange="sizeCheck(this)"> L
                   </label>
                   <label class="btn btn-secondary btn-circle btn-xl">
-                    <input type="radio" name="size" id="X-Large" autocomplete="off" value="Extra Large" onchange="sizeCheck(this)"> XL
+                    <input type="radio" name="size" id="X-Large" autocomplete="off" value="ExtraLarge" onchange="sizeCheck(this)"> XL
                   </label>
                 </div>
 
               <!-- <p id="choice"></p> -->
 
               </form>
-            <a class="btn btn-primary" href="#" role="button">Customize</a>
+            <a class="btn btn-primary" onclick="customizeHawaiian()" role="button">Customize</a>
             <a class="btn btn-primary" href="#" role="button">Add to Order</a>
             </span>
           </div>
@@ -244,14 +261,14 @@
                     <input type="radio" name="size" id="Large" autocomplete="off" value="Large" onchange="sizeCheck(this)"> L
                   </label>
                   <label class="btn btn-secondary btn-circle btn-xl">
-                    <input type="radio" name="size" id="X-Large" autocomplete="off" value="Extra Large" onchange="sizeCheck(this)"> XL
+                    <input type="radio" name="size" id="X-Large" autocomplete="off" value="ExtraLarge" onchange="sizeCheck(this)"> XL
                   </label>
                 </div>
 
               <!-- <p id="choice"></p> -->
 
               </form>
-            <a class="btn btn-primary" href="#" role="button">Customize</a>
+            <a class="btn btn-primary" onclick="customizeVeggie()" role="button">Customize</a>
             <a class="btn btn-primary" href="#" role="button">Add to Order</a>
             </span>
           </div>
@@ -283,15 +300,15 @@
                     <input type="radio" name="size" id="Large" autocomplete="off" value="Large" onchange="sizeCheck(this)"> L
                   </label>
                   <label class="btn btn-secondary btn-circle btn-xl">
-                    <input type="radio" name="size" id="X-Large" autocomplete="off" value="Extra Large" onchange="sizeCheck(this)"> XL
+                    <input type="radio" name="size" id="X-Large" autocomplete="off" value="ExtraLarge" onchange="sizeCheck(this)"> XL
                   </label>
                 </div>
 
               <!-- <p id="choice"></p> -->
 
               </form>
-            <a class="btn btn-primary" href="#" role="button">Customize</a>
-            <a class="btn btn-primary" href="#" role="button">Add to Order</a>
+            <a class="btn btn-primary" onclick="customizeCanadian()" role="button">Customize</a>
+            <a class="btn btn-primary" onclick="addCanadian()" role="button">Add to Order</a>
             </span>
           </div>
         </div>
