@@ -1,0 +1,167 @@
+<html>
+
+<style>
+
+  .leftPanel {
+    position: absolute;
+    width: 25%;
+    height: 85%;
+    top: 6%;
+    border-style: solid;
+    border-color: dark;
+    background-color: lightyellow;
+  }
+
+  .summary {
+    overflow-y: auto;
+  }
+
+  .delPick {
+    position: absolute;
+    height: 20%;
+    width: 100%;
+    bottom: 10%;
+    border-top-style: solid;
+    overflow-y: auto;
+  }
+
+  .payMeth {
+    position: absolute;
+    height: 10%;
+    width: 100%;
+    bottom: 0%;
+    border-top-style: solid;
+    overflow-y: auto;
+  }
+
+  .accordionToBe {
+    position: absolute;
+    width: 65%;
+    height: 80%;
+    top: 8.5%;
+    left: 30%;
+    border-style: solid;
+    border-color: dark;
+    background-color: lightyellow;
+  }
+</style>
+
+
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+
+  <script>
+
+
+
+  </script>
+
+
+
+  <title>Pizza4u</title>
+</head>
+<body>
+
+
+
+  <nav class="navbar sticky-top navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">PIZZA4U LOGO</a>
+  </nav>
+
+  <div class="leftPanel">
+    <div class ="summary">
+      <h1 align="center">Summary</h1>
+      <p>Order details go here! Get from cart somehow?????????</p>
+      <p>Stretch: implement this section with a scrollbar if too big for frame!</p>
+    </div>
+    <div class ="delPick">
+      <h3 align="center">Delivery/Pick-up</h3>
+      <p>Variable for whichever method is selected - only shows up once selected?</p>
+      <p>Street address, City, Postal code
+         Phone number</p>
+    </div>
+    <div class ="payMeth">
+      <h3 align="center">Payment Method</h3>
+      <p>Variable for whichever method is selected - only shows up once selected?</p>
+    </div>
+  </div>
+
+  <div class="accordionToBe">
+    <div class="delivery">
+      <h2>Delivery Details</h2>
+      <form action="" display="inline">
+        <input type="radio" name="dpmeth" value="pickup"> Pickup
+        <input type="radio" name="dpmeth" value="delivery"> Delivery
+      </form>
+      <p>Sign-in/create account prompt</p>
+      <form action="" display="inline">
+        First name: <input type="text" name="firstname">
+        Last name: <input type="text" name="lastname">
+        <br>
+        Street address: <input type="text" name="streetaddress">
+        City: <input type="text" name="city">
+        <br>
+        Province: <input list="province_list" name="province">
+        Postal code: <input type="text" name="postcode">
+        <br>
+        <input type="submit" value="Submit">
+      </form>
+      <datalist id="province_list">
+        <option value="Alberta">
+        <option value="British Columbia">
+        <option value="Manitoba">
+        <option value="New Brunswick">
+        <option value="Newfoundland and Labrador">
+        <option value="Northwest Territories">
+        <option value="Nova Scotia">
+        <option value="Nunavut">
+        <option value="Ontario">
+        <option value="Prince Edward Island">
+        <option value="Quebec">
+        <option value="Saskatchewan">
+        <option value="Yukon">
+      </datalist>
+    </div>
+
+    <div class="payment">
+      <h2>Payment Information</h2>
+      <form action="" display="inline">
+        <input type="radio" name="paymentmeth" value="cash"> Cash
+        <input type="radio" name="paymentmeth" value="debitcredit"> Debit/Credit <sub>To be paid when you receive your order.</sub>
+        <br>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+
+    <div class="complete">
+      <h2>Complete Order</h2>
+      <form action="" display="inline">
+        <input type="submit" value="Submit">
+      </form>
+  </div>
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
