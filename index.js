@@ -14,6 +14,10 @@ app.use(function(req, res, next) {
     next();
 });
 app.get('/', (req, res) => res.send('Hello World!'));
+app.get('/logout', (req, res) => {
+	currentUser = null;
+	res.status(200).end("Successfully logged out");
+});
 app.post('/login', (req, res) => {
 	fs.readFile('src/users.json', 'utf8', function (err, data) {
 		if (err) throw err;
