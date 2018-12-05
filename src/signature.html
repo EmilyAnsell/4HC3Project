@@ -66,6 +66,93 @@
 
 
   <script>
+	function addCanadian(){
+		     
+        var size = $("#collapseFour .active input").val();;
+        var dough = "white";
+        var sauce = "marinara";
+        var cheese = [{name: "cheddar", side: "both"}];
+        var toppings = [{name: "Pepperoni", side: "both"}, {name: "Mushrooms", side: "both"}, {name: "Bacon", side: "both"}];
+        var price = 6+(size === "s" ? 5 : size === "m" ? 10 : size === "l" ? 15 : 20);
+
+        sendPizzaData(size, dough, sauce, cheese, toppings, price);
+      
+	}
+		function addVeggie(){
+		     
+        var size = $("#collapseThree .active input").val();;
+        var dough = "white";
+        var sauce = "marinara";
+        var cheese = [{name: "cheddar", side: "both"}];
+        var toppings = [{name: "Peppers", side: "both"}, {name: "Mushrooms", side: "both"}, {name: "Spinach", side: "both"}];
+        var price = 6+(size === "s" ? 5 : size === "m" ? 10 : size === "l" ? 15 : 20);
+
+        sendPizzaData(size, dough, sauce, cheese, toppings, price);
+      
+	}
+		function addHawaiian(){
+		     
+        var size = $("#collapseTwo .active input").val();;
+        var dough = "white";
+        var sauce = "marinara";
+        var cheese = [{name: "cheddar", side: "both"}];
+        var toppings = [{name: "Pineapple", side: "both"}, {name: "Ham", side: "both"}];
+        var price = 4+(size === "s" ? 5 : size === "m" ? 10 : size === "l" ? 15 : 20);
+
+        sendPizzaData(size, dough, sauce, cheese, toppings, price);
+      
+	}
+		function addMeatLovers(){
+		     
+        var size = $("#collapseOne .active input").val();;
+        var dough = "white";
+        var sauce = "marinara";
+        var cheese = [{name: "cheddar", side: "both"}];
+        var toppings = [{name: "Pepperoni", side: "both"}, {name: "Ham", side: "both"}, {name: "Bacon", side: "both"}, {name: "Sausage", side: "both"}];
+        var price = 8+(size === "s" ? 5 : size === "m" ? 10 : size === "l" ? 15 : 20);
+
+        sendPizzaData(size, dough, sauce, cheese, toppings, price);
+      
+	}
+		
+        function sendPizzaData(size, dough, sauce, cheese, toppings, price)
+      {
+        var xmlhttp;
+        if (window.XMLHttpRequest)
+        {// code for IE7+, Firefox, Chrome, Opera, Safari
+          xmlhttp=new XMLHttpRequest();
+        }
+        else
+        {// code for IE6, IE5
+          xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange=function()
+        {
+          if (xmlhttp.readyState==4 && xmlhttp.status==200)
+          {
+            alert('Item successfully added to cart');
+          }
+        }
+
+        var toppingsString = "";
+        var cheeseString = "";
+
+        for (var i = 0; i < toppings.length - 1; i++)
+        {
+          toppingsString += toppings[i].name + "-" + toppings[i].side + ",";
+        }
+        toppingsString += toppings[i].name + "-" + toppings[i].side;
+
+        for (var i = 0; i < cheese.length - 1; i++)
+        {
+          cheeseString += cheese[i].name + "-" + cheese[i].side + ",";
+        }
+        cheeseString += cheese[i].name + "-" + cheese[i].side;
+
+        xmlhttp.open("POST","http://localhost:3000/pizza/add",true);
+        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        xmlhttp.send("size=" + size + "&dough=" + dough + "&sauce=" + sauce + "&cheese=" + cheeseString + "&toppings=" + toppingsString + "&price=" + price);
+      }
   function customizeMeatLovers(){
     var size = $("#collapseOne .active input").val();
     window.location.href = 'customize.html?signature=MeatLovers&size='+size;
@@ -192,7 +279,7 @@
 
               </form>
             <a class="btn btn-primary" onclick="customizeMeatLovers()" role="button">Customize</a>
-            <a class="btn btn-primary" href="#" role="button">Add to Order</a>
+            <a class="btn btn-primary" onclick="addMeatLovers()" role="button">Add to Order</a>
             </span>
           </div>
         </div>
@@ -230,7 +317,7 @@
 
               </form>
             <a class="btn btn-primary" onclick="customizeHawaiian()" role="button">Customize</a>
-            <a class="btn btn-primary" href="#" role="button">Add to Order</a>
+            <a class="btn btn-primary" onclick="addHawaiian()" role="button">Add to Order</a>
             </span>
           </div>
         </div>
@@ -269,7 +356,7 @@
 
               </form>
             <a class="btn btn-primary" onclick="customizeVeggie()" role="button">Customize</a>
-            <a class="btn btn-primary" href="#" role="button">Add to Order</a>
+            <a class="btn btn-primary" onclick="addVeggie()" role="button">Add to Order</a>
             </span>
           </div>
         </div>
