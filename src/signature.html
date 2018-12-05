@@ -170,6 +170,29 @@
     window.location.href = 'customize.html?signature=Canadian&size='+size;
   }
 
+  function MeatLoversPrice(that){
+	var size = that.value;
+	console.log(size);
+	document.getElementById("meatLoverPrice").innerHTML = (size === "s" ? "$13.00" : size === "m" ? "$18.00" : size === "l" ? "$23.00" : "$28.00");
+  }
+  function HawaiianPrice(that){
+	var size = that.value;
+	console.log(size);
+	document.getElementById("hawaiianPrice").innerHTML = (size === "s" ? "$11.00" : size === "m" ? "$16.00" : size === "l" ? "$21.00" : "$26.00");
+  }
+
+  function VeggiePrice(that){
+	var size = that.value;
+	console.log(size);
+	document.getElementById("veggiePrice").innerHTML = (size === "s" ? "$11.00" : size === "m" ? "$16.00" : size === "l" ? "$21.00" : "$26.00");
+  }
+
+  function CanadianPrice(that){
+	var size = that.value;
+	console.log(size);
+	document.getElementById("canadianPrice").innerHTML = (size === "s" ? "$11.00" : size === "m" ? "$16.00" : size === "l" ? "$21.00" : "$26.00");
+  }
+
 
   function sizeCheck(that)
   {
@@ -256,22 +279,22 @@
         <div id="collapseOne" class="collapse" data-parent="#accordion">
 
           <div class="card-body">
-            Pepperoni, Ham, Sausage and Bacon.
+            Pepperoni, Ham, Sausage and Bacon. &emsp; <b id = "meatLoverPrice">$13.00</b>
             <span style="float: right;">
               <form>
                 <div class="btn-group-toggle" data-toggle="buttons">
                   <b>Available Sizes:</b>
                   <label class="btn btn-secondary btn-circle btn-s active">
-                    <input type="radio" name="size" id="Small" value="s" autocomplete="off" onchange="sizeCheck(this)"> S
+                    <input type="radio" name="size" id="Small" value="s" autocomplete="off" onchange="sizeCheck(this);MeatLoversPrice(this)"> S
                   </label>
                   <label class="btn btn-secondary btn-circle btn-m">
-                    <input type="radio" name="size" id="Medium" value="m" onchange="sizeCheck(this)" autocomplete="off"> M
+                    <input type="radio" name="size" id="Medium" value="m" onchange="sizeCheck(this);MeatLoversPrice(this)" autocomplete="off"> M
                   </label>
                   <label class="btn btn-secondary btn-circle btn-lg">
-                    <input type="radio" name="size" id="Large" autocomplete="off" value="l" onchange="sizeCheck(this)"> L
+                    <input type="radio" name="size" id="Large" autocomplete="off" value="l" onchange="sizeCheck(this);MeatLoversPrice(this)"> L
                   </label>
                   <label class="btn btn-secondary btn-circle btn-xl">
-                    <input type="radio" name="size" id="X-Large" autocomplete="off" value="xl" onchange="sizeCheck(this)"> XL
+                    <input type="radio" name="size" id="X-Large" autocomplete="off" value="xl" onchange="sizeCheck(this);MeatLoversPrice(this)"> XL
                   </label>
                 </div>
 
@@ -294,22 +317,22 @@
         <div id="collapseTwo" class="collapse" data-parent="#accordion">
 
           <div class="card-body">
-            Ham and Pineapple.
+            Ham and Pineapple.&emsp; <b id = "hawaiianPrice">$11.00</b>
             <span style="float: right;">
               <form>
                 <div class="btn-group-toggle" data-toggle="buttons">
                   <b>Available Sizes:</b>
                   <label class="btn btn-secondary btn-circle btn-s active">
-                    <input type="radio" name="size" id="Small" value="s" autocomplete="off" onchange="sizeCheck(this)"> S
+                    <input type="radio" name="size" id="Small" value="s" autocomplete="off" onchange="sizeCheck(this);HawaiianPrice(this)"> S
                   </label>
                   <label class="btn btn-secondary btn-circle btn-m">
-                    <input type="radio" name="size" id="Medium" value="m" onchange="sizeCheck(this)" autocomplete="off"> M
+                    <input type="radio" name="size" id="Medium" value="m" onchange="sizeCheck(this);HawaiianPrice(this)" autocomplete="off"> M
                   </label>
                   <label class="btn btn-secondary btn-circle btn-lg">
-                    <input type="radio" name="size" id="Large" autocomplete="off" value="l" onchange="sizeCheck(this)"> L
+                    <input type="radio" name="size" id="Large" autocomplete="off" value="l" onchange="sizeCheck(this);HawaiianPrice(this)"> L
                   </label>
                   <label class="btn btn-secondary btn-circle btn-xl">
-                    <input type="radio" name="size" id="X-Large" autocomplete="off" value="xl" onchange="sizeCheck(this)"> XL
+                    <input type="radio" name="size" id="X-Large" autocomplete="off" value="xl" onchange="sizeCheck(this);HawaiianPrice(this)"> XL
                   </label>
                 </div>
 
@@ -332,23 +355,23 @@
         <div id="collapseThree" class="collapse" data-parent="#accordion">
 
           <div class="card-body">
-            Peppers, Mushrooms and Spinach.
+            Peppers, Mushrooms and Spinach.&emsp; <b id = "veggiePrice">$11.00</b>
           </div>
             <span style="float: right;">
               <form>
                 <div class="btn-group-toggle" data-toggle="buttons">
                   <b>Available Sizes:</b>
                   <label class="btn btn-secondary btn-circle btn-s active">
-                    <input type="radio" name="size" id="Small" value="s" autocomplete="off" onchange="sizeCheck(this)"> S
+                    <input type="radio" name="size" id="Small" value="s" autocomplete="off" onchange="sizeCheck(this);VeggiePrice(this)"> S
                   </label>
                   <label class="btn btn-secondary btn-circle btn-m">
-                    <input type="radio" name="size" id="Medium" value="m" onchange="sizeCheck(this)" autocomplete="off"> M
+                    <input type="radio" name="size" id="Medium" value="m" onchange="sizeCheck(this);VeggiePrice(this)" autocomplete="off"> M
                   </label>
                   <label class="btn btn-secondary btn-circle btn-lg">
-                    <input type="radio" name="size" id="Large" autocomplete="off" value="l" onchange="sizeCheck(this)"> L
+                    <input type="radio" name="size" id="Large" autocomplete="off" value="l" onchange="sizeCheck(this);VeggiePrice(this)"> L
                   </label>
                   <label class="btn btn-secondary btn-circle btn-xl">
-                    <input type="radio" name="size" id="X-Large" autocomplete="off" value="xl" onchange="sizeCheck(this)"> XL
+                    <input type="radio" name="size" id="X-Large" autocomplete="off" value="xl" onchange="sizeCheck(this);VeggiePrice(this)"> XL
                   </label>
                 </div>
 
@@ -372,22 +395,22 @@
         <div id="collapseFour" class="collapse" data-parent="#accordion">
 
           <div class="card-body">
-            Pepperoni, Bacon and Mushrooms.
+            Pepperoni, Bacon and Mushrooms.&emsp; <b id = "canadianPrice">$11.00</b>
             <span style="float: right;">
               <form>
                 <div class="btn-group-toggle" data-toggle="buttons">
                   <b>Available Sizes:</b>
                   <label class="btn btn-secondary btn-circle btn-s active">
-                    <input type="radio" name="size" id="Small" value="s" autocomplete="off" onchange="sizeCheck(this)"> S
+                    <input type="radio" name="size" id="Small" value="s" autocomplete="off" onchange="sizeCheck(this);CanadianPrice(this)"> S
                   </label>
                   <label class="btn btn-secondary btn-circle btn-m">
-                    <input type="radio" name="size" id="Medium" value="m" onchange="sizeCheck(this)" autocomplete="off"> M
+                    <input type="radio" name="size" id="Medium" value="m" onchange="sizeCheck(this);CanadianPrice(this)" autocomplete="off"> M
                   </label>
                   <label class="btn btn-secondary btn-circle btn-lg">
-                    <input type="radio" name="size" id="Large" autocomplete="off" value="l" onchange="sizeCheck(this)"> L
+                    <input type="radio" name="size" id="Large" autocomplete="off" value="l" onchange="sizeCheck(this);CanadianPrice(this)"> L
                   </label>
                   <label class="btn btn-secondary btn-circle btn-xl">
-                    <input type="radio" name="size" id="X-Large" autocomplete="off" value="xl" onchange="sizeCheck(this)"> XL
+                    <input type="radio" name="size" id="X-Large" autocomplete="off" value="xl" onchange="sizeCheck(this);CanadianPrice(this)"> XL
                   </label>
                 </div>
 
