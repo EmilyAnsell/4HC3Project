@@ -6,7 +6,7 @@
 
  .col-lg-3{
     max-height: 83%;
-    overflow-y: auto; 
+    overflow-y: auto;
   }
 
   </style>
@@ -29,8 +29,9 @@
 
 
   <script>
-    
-    
+    var delivSubmitted = false;
+    var paySubmitted = false;
+
     function ShowHideDiv() {
         var chkpick = document.getElementById("chkpick");
         var chkdeliv = document.getElementById("chkdeliv");
@@ -42,24 +43,54 @@
         delivtext.style.display = chkdeliv.checked ? "block" : "none";
     }
 
-    function submitPickup(){
-      document.getElementById("pickmethod").innerHTML = "Pickup";
-        document.getElementById("address").innerHTML = "1280 Main Street West, Hamilton, ON, L8S 4L8";
+    function ShowPayButton() {
+      var paybutton = document.getElementById("paybutton");
+      paybutton.style.display = true ? "block" : "none";
     }
 
-    function submitDelivery(){
-      var firstname = document.getElementById("firstname").value;
-      var lastname = document.getElementById("lastname").value;
+    function submitPickup() {
+      var firstname = document.getElementById("firstname1").value;
+      var lastname = document.getElementById("lastname1").value;
+      var email = document.getElementById("email1").value;
+      var phone = document.getElementById("phone1").value;
+
+      if (firstname == "" || lastname == "" || email == "" || phone == "") {
+        alert("Please fill out every field.")
+        return false;
+      } else
+      var customerdetails = firstname + " " + lastname + "<br />" + email + "<br />" + phone;
+
+      document.getElementById("pickmethod").innerHTML = "Pickup";
+      document.getElementById("customerdetails").innerHTML = customerdetails;
+      document.getElementById("address").innerHTML = "1280 Main Street West, Hamilton, ON, L8S 4L8";
+
+      document.write(delivSubmitted = true);
+    }
+
+    function submitDelivery() {
+      var firstname = document.getElementById("firstname2").value;
+      var lastname = document.getElementById("lastname2").value;
+      var email = document.getElementById("email2").value;
+      var phone = document.getElementById("phone2").value;
       var streetaddress = document.getElementById("streetaddress").value;
       var city = document.getElementById("city").value;
       var province = document.getElementById("province").value;
       var postcode = document.getElementById("postcode").value;
-      
-      var address = firstname + " " + lastname
-      + ": \n " + streetaddress + ", " + city + ", " + province + ", " + postcode;
+
+      if (firstname == "" || lastname == "" || email == "" || phone == "" || streetaddress == ""
+          || city == "" || province == "" || postcode == "") {
+        alert("Please fill out every field.")
+        return false;
+      }
+
+      var customerdetails = firstname + " " + lastname + "<br />" + email + "<br />" + phone;
+      var address = streetaddress + ", " + city + ", " + province + ", " + postcode;
 
       document.getElementById("pickmethod").innerHTML = "Delivery";
+      document.getElementById("customerdetails").innerHTML = customerdetails;
       document.getElementById("address").innerHTML = address;
+
+      delivSubmitted = true;
     }
 
     function submitPayMeth() {
@@ -71,91 +102,27 @@
 
         var cardtext = document.getElementById("cardtext");
         cardtext.style.display = chkcard.checked ? "block" : "none";
+
+        paySubmitted = true;
     }
-    
-//marlee's stuf
-  var price;
-  var smallPrice = 5;
-  var mediumPrice = 10;
-  var largePrice = 15;
-  var exlargePrice = 20;
-  var size = "none";
 
-  function sizeCheck(that)
-  {
-    size = that.value;
-    document.getElementById("chooseSize").innerHTML = size;
-    if(size == "Small"){
-      price = smallPrice;
-    }else if(size == "Medium"){
-      price = mediumPrice;
-    }else if(size == "Large"){
-      price = largePrice;
-    }else if(size == "Extra Large"){
-      price = exlargePrice;
+    function submitOrder(){
+      if (delivSubmitted && paySubmitted){
+      alert("Thank you for placing your order with Pizza4U!\nOur pizza pros will be preparing it to perfection right away.\nA receipt for your order will be emailed to your provided email address.");
+      window.location.href = 'home.html';
+    } else {
+      alert("Please provide your pickup/delivery details and payment method before submitting your order.")
     }
-    document.getElementById("cost").innerHTML = "$" + price;
-    console.log(size);
-    console.log(price);
-    return size;
-
-    // sendData(name, size, price);
   }
-
-  function sauceCheck(that)
-  {
-    sauce = that.value;
-    document.getElementById("chooseSauce").innerHTML = sauce;
-    return sauce;
-
-
-    // sendData(name, size, price);
-  }
-
-  function thickCheck(that)
-  {
-    thick = that.value;
-    document.getElementById("chooseCrust").innerHTML = thick;
-    return thick;
-
-    // sendData(name, size, price);
-  }
-
-  function doughCheck(that)
-  {
-    dough = that.value;
-    document.getElementById("chooseDough").innerHTML = dough;
-    return dough;
-
-    // sendData(name, size, price);
-  }
-  function cheeseCheck(that)
-  {
-    cheese = that.value;
-    document.getElementById("chooseCheese").innerHTML = cheese;
-    return cheese;
-
-    // sendData(name, size, price);
-  }
-
-  function pickTopping(that){
-    if (that.value == "Vegetables") {
-      document.getElementById("ifMeat").style.display = "none";
-      document.getElementById("ifVeggie").style.display = "block";
-  }else {
-    document.getElementById("ifMeat").style.display = "block";
-    document.getElementById("ifVeggie").style.display = "none";
-  }
-}
 
 //If THis.hide.bs.collapse then + or -
   $(document).ready(function(){
     //collapse 1
     $("#collapseOne").on("hide.bs.collapse", function(){
-      $(".accordion1").html('<div>Delivery Details <span style="float:right;"> <font size="+2"> +</font></span>              </div>');
+      $(".accordion1").html('<div>Pickup/Delivery Details <span style="float:right;"> <font size="+2"> +</font></span>              </div>');
     });
     $("#collapseOne").on("show.bs.collapse", function(){
-      $(".accordion1").html('<div>Delivery Details <span style="float:right;"> <font size="+2"> -</font></span></span>              </div>');
+      $(".accordion1").html('<div>Pickup/Delivery Details <span style="float:right;"> <font size="+2"> -</font></span></span>              </div>');
     });
 //collapse 2
     $("#collapseTwo").on("hide.bs.collapse", function(){
@@ -176,11 +143,7 @@
 
 // var test = document.getElementsByName("size").value;
 // console.log(test);
-
-  });
-
-
-
+});
 
   </script>
 
@@ -208,12 +171,13 @@
                   Cheese: <span id="chooseCheese"> Not Selected</span></br>
                   Toppings: <span id="chooseTop"> Not Selected</span></br></br></br>
                   Cost: <span id="cost"> -- </span>
-       
-                
+
+
                   <h4>Delivery/Pick-up</h4>
                   <p id="pickmethod"></p>
+                  <p id="customerdetails"></p>
                   <p id="address"></p>
-                  
+
                   <h4>Payment Method</h4>
                   <p id="cashtext" style="display: none">
                       Cash
@@ -234,7 +198,7 @@
                   <div class="card-header">
                     <a data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="accordion1">
                       <div>
-                        Delivery Details <span style="float:right;"><font size="+2"> -</font> </span>
+                        Pickup/Delivery Details <span style="float:right;"><font size="+2"> -</font> </span>
                       </div>
                       </a>
                   </div>
@@ -247,15 +211,25 @@
                             <input type="radio" name="dpmeth" id="chkdeliv" value="delivery" onclick="ShowHideDiv()"> Delivery
                         </label>
                         <div id="picktext" style="display: none">
-                            Pickup your order at our location: 1280 Main Street West, Hamilton, ON, L8S 4L8
-                            <button class="btn btn-primary btn-lg btn-block" onclick="submitPickup()">Submit Delivery Details</button>
+                          First name: <input type="text" id="firstname1">
+                          Last name: <input type="text" id="lastname1">
+                          <br>
+                          Email address: <input type="email" id="email1">
+                          <br>
+                          Phone number: <input type="tel" id="phone1">
+                          <br>
+                          Pickup your order at our location: 1280 Main Street West, Hamilton, ON, L8S 4L8
+                          <button class="btn btn-primary btn-lg btn-block" onclick="submitPickup()">Submit Pickup Details</button>
                         </div>
 
                         <div id="delivtext" style="display: none">
-                            <p>Sign-in/create account prompt</p>
-                           
-                              First name: <input type="text" id="firstname">
-                              Last name: <input type="text" id="lastname">
+
+                              First name: <input type="text" id="firstname2">
+                              Last name: <input type="text" id="lastname2">
+                              <br>
+                              Email address: <input type="email" id="email2">
+                              <br>
+                              Phone number: <input type="tel" id="phone2">
                               <br>
                               Street address: <input type="text" id="streetaddress">
                               City: <input type="text" id="city">
@@ -280,7 +254,7 @@
                               <option value="Yukon">
                             </datalist>
                         </div>
-                        
+
                     </div>
                   </div>
                 </div>
@@ -296,14 +270,16 @@
                   </div>
                   <div id="collapseTwo" class="collapse" data-parent="#accordion">
                     <div class="card-body">
+                      <p>All payments will be made in person to the pizza specialist.</p>
                         <label for="chkcash">
-                            <input type="radio" name="paymeth" id="chkcash"> Cash
+                            <input type="radio" name="paymeth" id="chkcash" onclick="ShowPayButton()"> Cash
                         </label>
                         <label for="chkcard">
-                            <input type="radio" name="paymeth" id="chkcard"> Debit/Credit
+                            <input type="radio" name="paymeth" id="chkcard" onclick="ShowPayButton()"> Debit/Credit
                         </label>
+                        <div id="paybutton" style="display: none">
                             <button class="btn btn-primary btn-lg btn-block" onclick="submitPayMeth()">Submit Payment Method</button>
-               
+                        </div>
 
 
                     </div>
@@ -319,7 +295,8 @@
                   </div>
                   <div id="collapseThree" class="collapse" data-parent="#accordion">
                     <div class="card-body">
-                        <button class="btn btn-primary btn-lg btn-block">Submit Order</button>
+                      <p>Are you ready to complete your order? Once our pizza experts receive your order it cannot be changed.</p>
+                      <button class="btn btn-primary btn-lg btn-block" id="submitorder" onclick="submitOrder()">Submit Order</button>
                     </div>
                   </div>
                 </div>
