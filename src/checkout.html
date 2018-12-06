@@ -151,8 +151,25 @@
 
     function submitOrder(){
       if (delivSubmitted && paySubmitted){
-      alert("Thank you for placing your order with Pizza4U!\nOur pizza pros will be preparing it to perfection right away.\nA receipt for your order will be emailed to your provided email address.");
-      window.location.href = 'home.html';
+        var xmlhttp;
+      if (window.XMLHttpRequest)
+        {// code for IE7+, Firefox, Chrome, Opera, Safari
+          xmlhttp=new XMLHttpRequest();
+        }
+        else
+        {// code for IE6, IE5
+          xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+      }
+
+      xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          alert("Thank you for placing your order with Pizza4U!\nOur pizza pros will be preparing it to perfection right away.\nA receipt for your order will be emailed to your provided email address.");
+          window.location.href = 'home.html';
+        }
+      }
+        xmlhttp.open("GET","cart/clear",true);
+        xmlhttp.send();
+        
     } else {
       alert("Please provide your pickup/delivery details and payment method before submitting your order.")
     }
