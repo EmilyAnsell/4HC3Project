@@ -71,11 +71,12 @@
         var size = $("#collapseFour .active input").val();;
         var dough = "white";
         var sauce = "marinara";
+        var thickness = "Regular";
         var cheese = [{name: "cheddar", side: "both"}];
         var toppings = [{name: "Pepperoni", side: "both"}, {name: "Mushrooms", side: "both"}, {name: "Bacon", side: "both"}];
         var price = 6+(size === "Small" ? 5 : size === "Medium" ? 10 : size === "Large" ? 15 : 20);
 
-        sendPizzaData(size, dough, sauce, cheese, toppings, price);
+        sendPizzaData(size, dough, sauce, thickness, cheese, toppings, price);
 
 	}
 		function addVeggie(){
@@ -83,11 +84,12 @@
         var size = $("#collapseThree .active input").val();;
         var dough = "white";
         var sauce = "marinara";
+        var thickness = "Regular";
         var cheese = [{name: "cheddar", side: "both"}];
         var toppings = [{name: "Peppers", side: "both"}, {name: "Mushrooms", side: "both"}, {name: "Spinach", side: "both"}];
         var price = 6+(size === "Small" ? 5 : size === "Medium" ? 10 : size === "Large" ? 15 : 20);
 
-        sendPizzaData(size, dough, sauce, cheese, toppings, price);
+        sendPizzaData(size, dough, sauce, thickness, cheese, toppings, price);
 
 	}
 		function addHawaiian(){
@@ -95,11 +97,12 @@
         var size = $("#collapseTwo .active input").val();;
         var dough = "white";
         var sauce = "marinara";
+        var thickness = "Regular";
         var cheese = [{name: "cheddar", side: "both"}];
         var toppings = [{name: "Pineapple", side: "both"}, {name: "Ham", side: "both"}];
         var price = 4+(size === "Small" ? 5 : size === "Medium" ? 10 : size === "Large" ? 15 : 20);
 
-        sendPizzaData(size, dough, sauce, cheese, toppings, price);
+        sendPizzaData(size, dough, sauce, thickness, cheese, toppings, price);
 
 	}
 		function addMeatLovers(){
@@ -107,15 +110,16 @@
         var size = $("#collapseOne .active input").val();;
         var dough = "white";
         var sauce = "marinara";
+        var thickness = "Regular";
         var cheese = [{name: "cheddar", side: "both"}];
         var toppings = [{name: "Pepperoni", side: "both"}, {name: "Ham", side: "both"}, {name: "Bacon", side: "both"}, {name: "Sausage", side: "both"}];
         var price = 8+(size === "Small" ? 5 : size === "Medium" ? 10 : size === "Large" ? 15 : 20);
 
-        sendPizzaData(size, dough, sauce, cheese, toppings, price);
+        sendPizzaData(size, dough, sauce, thickness, cheese, toppings, price);
 
 	}
 
-        function sendPizzaData(size, dough, sauce, cheese, toppings, price)
+        function sendPizzaData(size, dough, sauce, thickness, cheese, toppings, price)
       {
         var xmlhttp;
         if (window.XMLHttpRequest)
@@ -151,7 +155,7 @@
 
         xmlhttp.open("POST","http://localhost:3000/pizza/add",true);
         xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-        xmlhttp.send("size=" + size + "&dough=" + dough + "&sauce=" + sauce +"&thickness=Regular"+"&cheese=" + cheeseString + "&toppings=" + toppingsString + "&price=" + price);
+        xmlhttp.send("size=" + size + "&dough=" + dough + "&sauce=" + sauce +"&thickness="+thickness+"&cheese=" + cheeseString + "&toppings=" + toppingsString + "&price=" + price);
       }
   function customizeMeatLovers(){
     var size = $("#collapseOne .active input").val();
