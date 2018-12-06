@@ -157,6 +157,11 @@
       document.getElementById("cost").innerHTML = "$" + priceTop;
       return "both";
     }
+    else if (that.value == "none"){
+      priceTop = price;
+      document.getElementById("cost").innerHTML = "$" + priceTop;
+      return "none";
+    }
   }
 
 
@@ -164,19 +169,32 @@ var chedder,parm,nomoo;
   function cheeseCheck(that){
     sides = halfs(that);
     // cheese = " Chedder " + side;
-    if(that.name == "chedder"){
+    if((that.name == "chedder") && (sides != "none")){
       document.getElementById("chedderChoice").innerHTML = " Chedder " + sides + "</br>";
       chedder = {name: "chedder", side: sides};
       cheese[0] = chedder;
-    }else if(that.name == "parm"){
+    }else if((that.name == "chedder") && (sides == "none")){
+      document.getElementById("chedderChoice").innerHTML = " ";
+      chedder = {name: "chedder", side: sides};
+      cheese[0] = chedder;
+    }
+    else if((that.name == "parm")&& (sides != "none")){
       document.getElementById("parmChoice").innerHTML = " Parmigiano " + sides + "</br>";
       parm = {name: "parmigiano", side: sides};
       cheese[1] = parm;
-    }else if(that.name == "noMoo"){
+    }else if((that.name == "parm") && (sides == "none")){
+      document.getElementById("parmChoice").innerHTML = " ";
+      parm = {name: "parmigiano", side: sides};
+      cheese[1] = parm;
+    }
+    else if((that.name == "noMoo") && (sides != "none")){
       document.getElementById("nomooChoice").innerHTML =" Lactose Free "+  sides + "</br>";
       nomoo = {name: "nomoo", side: sides};
       cheese[2] = nomoo;
-
+    }else if((that.name == "noMoo") && (sides == "none")){
+      document.getElementById("nomooChoice").innerHTML =" ";
+      nomoo = {name: "nomoo", side: sides};
+      cheese[2] = nomoo;
     }
     return cheese;
 
@@ -186,37 +204,77 @@ var chedder,parm,nomoo;
   function toppingCheck(that){
     side = halfs(that);
     // cheese = " Chedder " + side;
-    if(that.name == "pep"){
+    if((that.name == "pep") && (side != "none")){
       document.getElementById("pepChoice").innerHTML = " Pepperoni " + side + "</br>";
       pep = {name: "pepperoni", side: sides};
       topping[0] = pep;
-    }else if(that.name == "bacon"){
+    }else if((that.name == "pep") && (side == "none")){
+      document.getElementById("pepChoice").innerHTML = " ";
+      pep = {name: "pepperoni", side: sides};
+      topping[0] = pep;
+    }
+    else if((that.name == "bacon")  && (side != "none")){
       document.getElementById("baconChoice").innerHTML = " Bacon " + side + "</br>";
       bacon = {name: "bacon", side: sides};
       topping[1] = bacon;
-    }else if(that.name == "saus"){
+    }else if((that.name == "bacon")&& (side == "none")){
+      document.getElementById("baconChoice").innerHTML = " ";
+      bacon = {name: "bacon", side: sides};
+      topping[1] = bacon;
+    }
+    else if((that.name == "saus") && (side != "none")){
       document.getElementById("sausChoice").innerHTML = " Sausage " + side + "</br>";
       saus = {name: "sausage", side: sides};
       topping[2] = saus;
-    }else if(that.name == "ham"){
+    }else if((that.name == "saus")&&(side == "none")){
+      document.getElementById("sausChoice").innerHTML = " ";
+      saus = {name: "sausage", side: sides};
+      topping[2] = saus;
+    }
+    else if((that.name == "ham") && (side != "none")){
       document.getElementById("hamChoice").innerHTML = " Ham " + side + "</br>";
       ham = {name: "ham", side: sides};
       topping[3] = ham;
-    }else if(that.name == "pine"){
+    }else if((that.name == "ham")&&(side == "none")){
+      document.getElementById("hamChoice").innerHTML = " ";
+      ham = {name: "ham", side: sides};
+      topping[3] = ham;
+    }
+    else if((that.name == "pine") && (side != "none")){
       document.getElementById("pineChoice").innerHTML = " Pineapple " + side + "</br>";
       pine = {name: "pineapple", side: sides};
       topping[4] = pine;
-    }else if(that.name == "pepper"){
+    }else if((that.name == "pine")&&(side == "none")){
+      document.getElementById("pineChoice").innerHTML = " ";
+      pine = {name: "pineapple", side: sides};
+      topping[4] = pine;
+    }
+    else if((that.name == "pepper") && (side != "none")){
       document.getElementById("pepperChoice").innerHTML = " Pepper " + side + "</br>";
       pepper = {name: "pepper", side: sides};
       topping[5] = pepper;
-    }else if(that.name == "mush"){
+    }else if((that.name == "pepper")&&(side == "none")){
+      document.getElementById("pepperChoice").innerHTML = " ";
+      pepper = {name: "pepper", side: sides};
+      topping[5] = pepper;
+    }
+    else if((that.name == "mush") && (side != "none")){
       document.getElementById("mushChoice").innerHTML = " Mushroom " + side + "</br>";
       mush = {name: "mushroom", side: sides};
       topping[6] = mush;
-    }else if(that.name == "spin"){
+    }else if((that.name == "mush")&&(side == "none")){
+      document.getElementById("mushChoice").innerHTML = " ";
+      mush = {name: "mushroom", side: sides};
+      topping[6] = mush;
+    }
+    else if((that.name == "spin") && (side != "none")){
       document.getElementById("spinChoice").innerHTML = " Spinach " + side + "</br>";
       spin = {name: "spinach", side: sides};
+      topping[7] = spin;
+    }
+    else if((that.name == "spin")&&(side == "none")){
+      document.getElementById("spinChoice").innerHTML = " ";
+      mush = {name: "mushroom", side: sides};
       topping[7] = spin;
     }
     return topping;
@@ -282,8 +340,9 @@ var chedder,parm,nomoo;
 
 
     var special = getQueryVariable("signature");
+    var size = getQueryVariable("size");
     console.log(special);
-    var special = getQueryVariable("size");
+
 
     if (special == "canadian"){
       console.log('TEST');
@@ -291,11 +350,16 @@ var chedder,parm,nomoo;
     }else{
       console.log('HMMM');
       document.getElementById('crust2').checked = true;
-
     }
 
+    testy = document.getElementById('Small').class;
+    console.log(testy);
 
   });
+
+
+
+
 
 
   function sendPizzaData(size, dough, sauce, cheese, toppings, price)
@@ -337,7 +401,37 @@ var chedder,parm,nomoo;
   xmlhttp.send("size=" + size + "&dough=" + dough + "&sauce=" + sauce + "&cheese=" + cheeseString + "&toppings=" + toppingsString + "&price=" + price);
 }
 
-function checkOut(){
+
+
+function validateForm() {
+  var x1 = document.forms["myForm"]["size"].value;
+  var x2 = document.forms["myForm"]["sause"].value;
+  var x3 = document.forms["myForm"]["thick"].value;
+  var x4 = document.forms["myForm"]["crust"].value;
+
+  var x5 = document.forms["myForm"]["chedder"].value;
+  var x6 = document.forms["myForm"]["parm"].value;
+  var x7 = document.forms["myForm"]["noMoo"].value;
+
+
+  if ((x1 == "")) {
+    alert("Please Pick a Size");
+    return false;
+  }else if ((x2 == "")) {
+    alert("Please Pick a Sause");
+    return false;
+  }else if ((x3 == "")) {
+    alert("Please Pick a Thickness");
+    return false;
+  }else if ((x4 == "")) {
+    alert("Please Pick a Crust");
+    return false;
+  }else if ((x5 == "") && (x6 == "") && (x7 == "")) {
+    alert("Please Pick a Cheese");
+    return false;
+  }
+
+
   console.log(size);
   console.log(thick);
   console.log(dough);
@@ -347,19 +441,21 @@ function checkOut(){
   console.log(price);
 
   sendPizzaData(size, dough, sauce, cheese, toppings, price);
-  alert("I am an alert box!");
+  alert("Added to Cart");
   window.location.href = 'sides.html';
-
 }
 
   </script>
 
+
+
   <nav class="navbar sticky-top navbar-dark bg-dark">
     <a class="navbar-brand" href="home.html"><img src="../images/Pizza4u-W.png" height="60%" width="30%"> </a>
     <a class="navbar-brand" href="signature.html"> Signiture Pizza </a>
-    <a class="navbar-brand" href="customize.html"> Custom Pizza </a>
+    <a class="navbar-brand" href="#"> Specials </a>
     <a class="navbar-brand" href="sides.html"> Sides </a>
-    <a class="navbar-brand" href="checkout.html"> <i style='font-size:24px' class='fas'> &#xf07a;		</i> </a>
+    <a class="navbar-brand" href="#"> <i style='font-size:24px' class='fas'> &#xf07a;		</i> </a>
+
   </nav>
 </br>
   <div class="container-fluid">
@@ -445,7 +541,7 @@ function checkOut(){
                   <div id="collapseOne" class="collapse show" data-parent="#accordion">
                     <div class="card-body">
 
-                      <form>
+                      <form name="myForm" onsubmit="return validateForm()" method="post">
                         <div class="btn-group-toggle" data-toggle="buttons">
                           <b>Available Sizes:</b>
                           <label class="btn btn-secondary btn-circle btn-s">
@@ -464,7 +560,6 @@ function checkOut(){
 
                         <!-- <p id="choice"></p> -->
 
-                      </form>
                     </div>
                   </div>
                 </div>
@@ -481,7 +576,6 @@ function checkOut(){
                   <div id="collapseTwo" class="collapse" data-parent="#accordion">
                     <div class="card-body">
 
-                      <form>
                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
                           <label class="btn btn-secondary">
                             <input type="radio" name="sause" id="sause1" value="Marinara" onchange="sauceCheck(this)" autocomplete="off"><img src="../images/custom/marinara.jpg" height="60%" width="100%"></br>  Marinara
@@ -493,9 +587,11 @@ function checkOut(){
                           <label class="btn btn-secondary">
                             <input type="radio" name="sause" id="sause3" value="BBQ" onchange="sauceCheck(this)" autocomplete="off"><img src="../images/custom/bbq.jpg" height="60%" width="70%"></br> BBQ
                           </label>
+                          <label class="btn btn-secondary">
+                            <input type="radio" name="sause" id="sause4" value="None" onchange="sauceCheck(this)" autocomplete="off"><font size="+10"> X</font></br> none
+                          </label>
                         </div>
 
-                      </form>
 
 
                     </div>
@@ -514,7 +610,6 @@ function checkOut(){
 
 
 
-                                <form>
                                   <span> Choose Crust Thinkness:     </span>
                                   <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                     <label class="btn btn-secondary">
@@ -541,7 +636,6 @@ function checkOut(){
                                     </label>
                                   </div>
 
-                                </form>
 
 
                     </div>
@@ -573,6 +667,9 @@ function checkOut(){
                             <label class="btn btn-secondary">
                               <input type="radio" name="chedder" id="chedder3" onchange="cheeseCheck(this)" autocomplete="off"  value="right"> <i style='font-size:24px' class='fas'> &#9687;	</i></br>Right
                             </label>
+                            <label class="btn btn-secondary">
+                              <input type="radio" name="chedder" id="chedder4" value="none" onchange="cheeseCheck(this)" autocomplete="off"> X</br> None
+                            </label>
                           </div>
                         </div>
                         <div class="col-lg-4">
@@ -588,6 +685,9 @@ function checkOut(){
                             <label class="btn btn-secondary">
                               <input type="radio" name="parm" id="parm3" onchange="cheeseCheck(this)" autocomplete="off"  value="right"> <i style='font-size:24px' class='fas'> &#9687;	</i></br>Right
                             </label>
+                            <label class="btn btn-secondary">
+                              <input type="radio" name="parm" id="parm4" value="none" onchange="cheeseCheck(this)" autocomplete="off"> X</br> None
+                            </label>
                           </div>
                         </div>
                         <div class="col-lg-4">
@@ -602,6 +702,9 @@ function checkOut(){
                             </label>
                             <label class="btn btn-secondary">
                               <input type="radio" name="noMoo" id="noMoo3" onchange="cheeseCheck(this)" autocomplete="off"  value="right"> <i style='font-size:24px' class='fas'> &#9687;	</i></br>Right
+                            </label>
+                            <label class="btn btn-secondary">
+                              <input type="radio" name="noMoo" id="noMoo4" value="none" onchange="cheeseCheck(this)" autocomplete="off"> X</br> None
                             </label>
                           </div>
                         </div>
@@ -664,6 +767,9 @@ function checkOut(){
                               <label class="btn btn-secondary">
                                 <input type="radio" name="pep" id="pep3" onchange="toppingCheck(this)" autocomplete="off"  value="right"> <i style='font-size:24px' class='fas'> &#9687;	</i></br>Right
                               </label>
+                              <label class="btn btn-secondary">
+                                <input type="radio" name="pep" id="pep4" value="none" onchange="toppingCheck(this)" autocomplete="off"> X</br> None
+                              </label>
                             </div>
                           </div>
                           <div class="col-lg-3">
@@ -678,6 +784,9 @@ function checkOut(){
                               </label>
                               <label class="btn btn-secondary">
                                 <input type="radio" name="bacon" id="bacon3" onchange="toppingCheck(this)" autocomplete="off"  value="right"> <i style='font-size:24px' class='fas'> &#9687;	</i></br>Right
+                              </label>
+                              <label class="btn btn-secondary">
+                                <input type="radio" name="bacon" id="bacon4" value="none" onchange="toppingCheck(this)" autocomplete="off"> X</br> None
                               </label>
                             </div>
                           </div>
@@ -694,6 +803,9 @@ function checkOut(){
                               <label class="btn btn-secondary">
                                 <input type="radio" name="saus" id="saus3" onchange="toppingCheck(this)" autocomplete="off"  value="right"> <i style='font-size:24px' class='fas'> &#9687;	</i></br>Right
                               </label>
+                              <label class="btn btn-secondary">
+                                <input type="radio" name="saus" id="saus4" value="none" onchange="toppingCheck(this)" autocomplete="off"> X</br> None
+                              </label>
                             </div>
                           </div>
                             <div class="col-lg-3">
@@ -708,6 +820,9 @@ function checkOut(){
                                 </label>
                                 <label class="btn btn-secondary">
                                   <input type="radio" name="ham" id="ham3" onchange="toppingCheck(this)" autocomplete="off"  value="right"> <i style='font-size:24px' class='fas'> &#9687;	</i></br>Right
+                                </label>
+                                <label class="btn btn-secondary">
+                                  <input type="radio" name="ham" id="ham4" value="none" onchange="toppingCheck(this)" autocomplete="off"> X</br> None
                                 </label>
                               </div>
                           </div>
@@ -732,6 +847,9 @@ function checkOut(){
                                 <label class="btn btn-secondary">
                                   <input type="radio" name="pine" id="pine3" onchange="toppingCheck(this)" autocomplete="off"  value="right"> <i style='font-size:24px' class='fas'> &#9687;	</i></br>Right
                                 </label>
+                                <label class="btn btn-secondary">
+                                  <input type="radio" name="pine" id="pine4" value="none" onchange="toppingCheck(this)" autocomplete="off"> X</br> None
+                                </label>
                               </div>
                             </div>
                             <div class="col-lg-3">
@@ -746,6 +864,9 @@ function checkOut(){
                                 </label>
                                 <label class="btn btn-secondary">
                                   <input type="radio" name="pepper" id="pepper3" onchange="toppingCheck(this)" autocomplete="off"  value="right"> <i style='font-size:24px' class='fas'> &#9687;	</i></br>Right
+                                </label>
+                                <label class="btn btn-secondary">
+                                  <input type="radio" name="pepper" id="pepper4" value="none" onchange="toppingCheck(this)" autocomplete="off"> X</br> None
                                 </label>
                               </div>
                             </div>
@@ -762,6 +883,9 @@ function checkOut(){
                                 <label class="btn btn-secondary">
                                   <input type="radio" name="mush" id="mush3" onchange="toppingCheck(this)" autocomplete="off"  value="right"> <i style='font-size:24px' class='fas'> &#9687;	</i></br>Right
                                 </label>
+                                <label class="btn btn-secondary">
+                                  <input type="radio" name="mush" id="mush4" value="none" onchange="toppingCheck(this)" autocomplete="off"> X</br> None
+                                </label>
                               </div>
                             </div>
                               <div class="col-lg-3">
@@ -777,6 +901,9 @@ function checkOut(){
                                   <label class="btn btn-secondary">
                                     <input type="radio" name="spin" id="spin3" onchange="toppingCheck(this)" autocomplete="off"  value="right"> <i style='font-size:24px' class='fas'> &#9687;	</i></br>Right
                                   </label>
+                                  <label class="btn btn-secondary">
+                                    <input type="radio" name="spin" id="spin4" value="none" onchange="toppingCheck(this)" autocomplete="off"> X</br> None
+                                  </label>
                                 </div>
                             </div>
                           </div>
@@ -791,8 +918,8 @@ function checkOut(){
 
               </div>
 
-              <button class= "btn btn-primary btn-lg btn-block" onsubmit="checkOut()"> Add to Cart </button>
-
+              <button class= "btn btn-primary btn-lg btn-block" > Add to Cart </button>
+            </form>
             </div>
 
 
