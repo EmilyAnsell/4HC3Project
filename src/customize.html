@@ -398,7 +398,6 @@ var chedder,parm,nomoo;
 }
 
 
-
 function validateForm() {
   var x1 = document.forms["myForm"]["size"].value;
   var x2 = document.forms["myForm"]["sause"].value;
@@ -426,9 +425,9 @@ function validateForm() {
     alert("Please Pick a Cheese");
     return false;
   }else {
-    // alert(size+ dough+ sauce+ thick+ cheese+ topping+ price);
+    alert(size+ dough+ sauce+ thick+ cheese+ topping+ price);
     sendPizzaData(size, dough, sauce, thick, cheese, topping, price);
-    window.location.href = 'sides.html';
+    // window.location.href = 'sides.html';
     return false;
   }
 
