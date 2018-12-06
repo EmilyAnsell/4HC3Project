@@ -32,6 +32,67 @@
     var delivSubmitted = false;
     var paySubmitted = false;
 
+
+    var xmlhttp;
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {// code for IE6, IE5
+      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var allCart = JSON.parse(this.responseText);
+
+            cartList = "<h6>Pizza:</h6>";
+            var totalPrice = 0;
+
+            for (var i = 0, l = allCart[0].length; i < l; i++){ //pizzas
+              cartList += "Size: " + allCart[0][i].size +"<br>";
+              cartList += "Sauce: " + allCart[0][i].sauce +"<br>";
+              cartList += "Crust Thickness: " + "NA<br>";
+              cartList += "Dough: " + allCart[0][i].dough +"<br>";
+              cartList += "Cheese: " + allCart[0][i].cheese +"<br>";
+              cartList += "Toppings: " + allCart[0][i].toppings +"<br>";
+              cartList += "Cost: $" + allCart[0][i].price + "<br><br>";
+              totalPrice += parseInt(allCart[0][i].price);
+            }
+            cartList += "<h6>Sides:</h6>"
+            for (var i = 0, l = allCart[1].length; i < l; i++){
+              cartList += "Name: " + allCart[1][i].name + "<br>";
+              cartList += "Size: " + allCart[1][i].size + "<br>";
+              cartList += "Cost: $" + allCart[1][i].price + "<br>";
+              totalPrice += parseInt(allCart[1][i].price);
+            }
+
+            document.getElementById("cart").innerHTML = cartList;
+            document.getElementById("totalprice").innerHTML = "<h5>Order total: $" +totalPrice +"</h5>";
+        }
+    };
+    xmlhttp.open("GET","http://localhost:3000/cart/view",true);
+    xmlhttp.send();
+
+    var cart = reqListener();
+
+
+    function reqListener () {
+      var allCart = console.log(this.responseText);
+      var cartList = "Pizza:\n";
+      var totalPrice = 0;
+
+      for (var pizza in allCart[0]){ //pizzas
+        cartList += "Size: " + pizza.size;
+      }
+      cartList += "Sides:\n"
+      for (var side in allCart[1]){
+        cartList += "Name: " + side.name;
+      }
+      return allCart;
+    }
+
     function ShowHideDiv() {
         var chkpick = document.getElementById("chkpick");
         var chkdeliv = document.getElementById("chkdeliv");
@@ -64,7 +125,7 @@
       document.getElementById("customerdetails").innerHTML = customerdetails;
       document.getElementById("address").innerHTML = "1280 Main Street West, Hamilton, ON, L8S 4L8";
 
-      document.write(delivSubmitted = true);
+      delivSubmitted = true;
     }
 
     function submitDelivery() {
@@ -144,7 +205,6 @@
 // var test = document.getElementsByName("size").value;
 // console.log(test);
 });
-
   </script>
 
   <nav class="navbar sticky-top navbar-dark bg-dark">
@@ -163,13 +223,8 @@
               <div  class="container" color="white" style="background-color:#343A40;color: white;">
                   <h4> Your Order </h4>
 
-                  Size: <span id="chooseSize"> Not Selected</span></br>
-                  Sauce: <span id="chooseSauce"> Not Selected</span></br>
-                  Crust Thickness: <span id="chooseCrust"> Not Selected</span></br>
-                  Dough: <span id="chooseDough"> Not Selected</span></br>
-                  Cheese: <span id="chooseCheese"> Not Selected</span></br>
-                  Toppings: <span id="chooseTop"> Not Selected</span></br></br></br>
-                  Cost: <span id="cost"> -- </span>
+                  <p id="cart"></p>
+                  <p id="totalprice"></p>
 
 
                   <h4>Delivery/Pick-up</h4>
