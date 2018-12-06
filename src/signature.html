@@ -73,7 +73,7 @@
         var sauce = "marinara";
         var cheese = [{name: "cheddar", side: "both"}];
         var toppings = [{name: "Pepperoni", side: "both"}, {name: "Mushrooms", side: "both"}, {name: "Bacon", side: "both"}];
-        var price = 6+(size === "s" ? 5 : size === "m" ? 10 : size === "l" ? 15 : 20);
+        var price = 6+(size === "Small" ? 5 : size === "Medium" ? 10 : size === "Large" ? 15 : 20);
 
         sendPizzaData(size, dough, sauce, cheese, toppings, price);
 
@@ -85,7 +85,7 @@
         var sauce = "marinara";
         var cheese = [{name: "cheddar", side: "both"}];
         var toppings = [{name: "Peppers", side: "both"}, {name: "Mushrooms", side: "both"}, {name: "Spinach", side: "both"}];
-        var price = 6+(size === "s" ? 5 : size === "m" ? 10 : size === "l" ? 15 : 20);
+        var price = 6+(size === "Small" ? 5 : size === "Medium" ? 10 : size === "Large" ? 15 : 20);
 
         sendPizzaData(size, dough, sauce, cheese, toppings, price);
 
@@ -97,7 +97,7 @@
         var sauce = "marinara";
         var cheese = [{name: "cheddar", side: "both"}];
         var toppings = [{name: "Pineapple", side: "both"}, {name: "Ham", side: "both"}];
-        var price = 4+(size === "s" ? 5 : size === "m" ? 10 : size === "l" ? 15 : 20);
+        var price = 4+(size === "Small" ? 5 : size === "Medium" ? 10 : size === "Large" ? 15 : 20);
 
         sendPizzaData(size, dough, sauce, cheese, toppings, price);
 
@@ -109,7 +109,7 @@
         var sauce = "marinara";
         var cheese = [{name: "cheddar", side: "both"}];
         var toppings = [{name: "Pepperoni", side: "both"}, {name: "Ham", side: "both"}, {name: "Bacon", side: "both"}, {name: "Sausage", side: "both"}];
-        var price = 8+(size === "s" ? 5 : size === "m" ? 10 : size === "l" ? 15 : 20);
+        var price = 8+(size === "Small" ? 5 : size === "Medium" ? 10 : size === "Large" ? 15 : 20);
 
         sendPizzaData(size, dough, sauce, cheese, toppings, price);
 
@@ -173,24 +173,24 @@
   function MeatLoversPrice(that){
 	var size = that.value;
 	console.log(size);
-	document.getElementById("meatLoverPrice").innerHTML = (size === "s" ? "$13.00" : size === "m" ? "$18.00" : size === "l" ? "$23.00" : "$28.00");
+	document.getElementById("meatLoverPrice").innerHTML = (size === "Small" ? "$13.00" : size === "Medium" ? "$18.00" : size === "Large" ? "$23.00" : "$28.00");
   }
   function HawaiianPrice(that){
 	var size = that.value;
 	console.log(size);
-	document.getElementById("hawaiianPrice").innerHTML = (size === "s" ? "$11.00" : size === "m" ? "$16.00" : size === "l" ? "$21.00" : "$26.00");
+	document.getElementById("hawaiianPrice").innerHTML = (size === "Small" ? "$11.00" : size === "Medium" ? "$16.00" : size === "Large" ? "$21.00" : "$26.00");
   }
 
   function VeggiePrice(that){
 	var size = that.value;
 	console.log(size);
-	document.getElementById("veggiePrice").innerHTML = (size === "s" ? "$11.00" : size === "m" ? "$16.00" : size === "l" ? "$21.00" : "$26.00");
+	document.getElementById("veggiePrice").innerHTML = (size === "Small" ? "$11.00" : size === "Medium" ? "$16.00" : size === "Large" ? "$21.00" : "$26.00");
   }
 
   function CanadianPrice(that){
 	var size = that.value;
 	console.log(size);
-	document.getElementById("canadianPrice").innerHTML = (size === "s" ? "$11.00" : size === "m" ? "$16.00" : size === "l" ? "$21.00" : "$26.00");
+	document.getElementById("canadianPrice").innerHTML = (size === "Small" ? "$11.00" : size === "Medium" ? "$16.00" : size === "Large" ? "$21.00" : "$26.00");
   }
 
 
@@ -257,7 +257,7 @@
 
   <nav class="navbar sticky-top navbar-dark bg-dark">
     <a class="navbar-brand" href="home.html"><img src="../images/Pizza4u-W.png" height="60%" width="30%"> </a>
-    <a class="navbar-brand" href="signature.html"> Signiture Pizza </a>
+    <a class="navbar-brand" href="signature.html"> Signature Pizza </a>
     <a class="navbar-brand" href="customize.html"> Custom Pizza </a>
     <a class="navbar-brand" href="sides.html"> Sides </a>
     <a class="navbar-brand" href="checkout.html"> <i style='font-size:24px' class='fas'> &#xf07a;		</i> </a>
@@ -284,16 +284,16 @@
                 <div class="btn-group-toggle" data-toggle="buttons">
                   <b>Available Sizes:</b>
                   <label class="btn btn-secondary btn-circle btn-s active">
-                    <input type="radio" name="size" id="Small" value="s" autocomplete="off" onchange="sizeCheck(this);MeatLoversPrice(this)"> S
+                    <input type="radio" name="size" id="Small" value="Small" autocomplete="off" onchange="sizeCheck(this);MeatLoversPrice(this)"> S
                   </label>
                   <label class="btn btn-secondary btn-circle btn-m">
-                    <input type="radio" name="size" id="Medium" value="m" onchange="sizeCheck(this);MeatLoversPrice(this)" autocomplete="off"> M
+                    <input type="radio" name="size" id="Medium" value="Medium" onchange="sizeCheck(this);MeatLoversPrice(this)" autocomplete="off"> M
                   </label>
                   <label class="btn btn-secondary btn-circle btn-lg">
-                    <input type="radio" name="size" id="Large" autocomplete="off" value="l" onchange="sizeCheck(this);MeatLoversPrice(this)"> L
+                    <input type="radio" name="size" id="Large" autocomplete="off" value="Large" onchange="sizeCheck(this);MeatLoversPrice(this)"> L
                   </label>
                   <label class="btn btn-secondary btn-circle btn-xl">
-                    <input type="radio" name="size" id="X-Large" autocomplete="off" value="xl" onchange="sizeCheck(this);MeatLoversPrice(this)"> XL
+                    <input type="radio" name="size" id="X-Large" autocomplete="off" value="Extra Large" onchange="sizeCheck(this);MeatLoversPrice(this)"> XL
                   </label>
                 </div>
 
@@ -322,16 +322,16 @@
                 <div class="btn-group-toggle" data-toggle="buttons">
                   <b>Available Sizes:</b>
                   <label class="btn btn-secondary btn-circle btn-s active">
-                    <input type="radio" name="size" id="Small" value="s" autocomplete="off" onchange="sizeCheck(this);HawaiianPrice(this)"> S
+                    <input type="radio" name="size" id="Small" value="Small" autocomplete="off" onchange="sizeCheck(this);HawaiianPrice(this)"> S
                   </label>
                   <label class="btn btn-secondary btn-circle btn-m">
-                    <input type="radio" name="size" id="Medium" value="m" onchange="sizeCheck(this);HawaiianPrice(this)" autocomplete="off"> M
+                    <input type="radio" name="size" id="Medium" value="Medium" onchange="sizeCheck(this);HawaiianPrice(this)" autocomplete="off"> M
                   </label>
                   <label class="btn btn-secondary btn-circle btn-lg">
-                    <input type="radio" name="size" id="Large" autocomplete="off" value="l" onchange="sizeCheck(this);HawaiianPrice(this)"> L
+                    <input type="radio" name="size" id="Large" autocomplete="off" value="Large" onchange="sizeCheck(this);HawaiianPrice(this)"> L
                   </label>
                   <label class="btn btn-secondary btn-circle btn-xl">
-                    <input type="radio" name="size" id="X-Large" autocomplete="off" value="xl" onchange="sizeCheck(this);HawaiianPrice(this)"> XL
+                    <input type="radio" name="size" id="X-Large" autocomplete="off" value="Extra Large" onchange="sizeCheck(this);HawaiianPrice(this)"> XL
                   </label>
                 </div>
 
@@ -361,16 +361,16 @@
                 <div class="btn-group-toggle" data-toggle="buttons">
                   <b>Available Sizes:</b>
                   <label class="btn btn-secondary btn-circle btn-s active">
-                    <input type="radio" name="size" id="Small" value="s" autocomplete="off" onchange="sizeCheck(this);VeggiePrice(this)"> S
+                    <input type="radio" name="size" id="Small" value="Small" autocomplete="off" onchange="sizeCheck(this);VeggiePrice(this)"> S
                   </label>
                   <label class="btn btn-secondary btn-circle btn-m">
-                    <input type="radio" name="size" id="Medium" value="m" onchange="sizeCheck(this);VeggiePrice(this)" autocomplete="off"> M
+                    <input type="radio" name="size" id="Medium" value="Medium" onchange="sizeCheck(this);VeggiePrice(this)" autocomplete="off"> M
                   </label>
                   <label class="btn btn-secondary btn-circle btn-lg">
-                    <input type="radio" name="size" id="Large" autocomplete="off" value="l" onchange="sizeCheck(this);VeggiePrice(this)"> L
+                    <input type="radio" name="size" id="Large" autocomplete="off" value="Large" onchange="sizeCheck(this);VeggiePrice(this)"> L
                   </label>
                   <label class="btn btn-secondary btn-circle btn-xl">
-                    <input type="radio" name="size" id="X-Large" autocomplete="off" value="xl" onchange="sizeCheck(this);VeggiePrice(this)"> XL
+                    <input type="radio" name="size" id="X-Large" autocomplete="off" value="Extra Large" onchange="sizeCheck(this);VeggiePrice(this)"> XL
                   </label>
                 </div>
 
@@ -400,16 +400,16 @@
                 <div class="btn-group-toggle" data-toggle="buttons">
                   <b>Available Sizes:</b>
                   <label class="btn btn-secondary btn-circle btn-s active">
-                    <input type="radio" name="size" id="Small" value="s" autocomplete="off" onchange="sizeCheck(this);CanadianPrice(this)"> S
+                    <input type="radio" name="size" id="Small" value="Small" autocomplete="off" onchange="sizeCheck(this);CanadianPrice(this)"> S
                   </label>
                   <label class="btn btn-secondary btn-circle btn-m">
-                    <input type="radio" name="size" id="Medium" value="m" onchange="sizeCheck(this);CanadianPrice(this)" autocomplete="off"> M
+                    <input type="radio" name="size" id="Medium" value="Medium" onchange="sizeCheck(this);CanadianPrice(this)" autocomplete="off"> M
                   </label>
                   <label class="btn btn-secondary btn-circle btn-lg">
-                    <input type="radio" name="size" id="Large" autocomplete="off" value="l" onchange="sizeCheck(this);CanadianPrice(this)"> L
+                    <input type="radio" name="size" id="Large" autocomplete="off" value="Large" onchange="sizeCheck(this);CanadianPrice(this)"> L
                   </label>
                   <label class="btn btn-secondary btn-circle btn-xl">
-                    <input type="radio" name="size" id="X-Large" autocomplete="off" value="xl" onchange="sizeCheck(this);CanadianPrice(this)"> XL
+                    <input type="radio" name="size" id="X-Large" autocomplete="off" value="Extra Large" onchange="sizeCheck(this);CanadianPrice(this)"> XL
                   </label>
                 </div>
 
