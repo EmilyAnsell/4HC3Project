@@ -18,7 +18,6 @@
   "homepage": "https://github.com/Evaans11/4HC3Project#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
-    "express": "^4.16.4",
-    "path": "^0.12.7"
+    "express": "^4.16.4"
   }
 }
