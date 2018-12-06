@@ -151,7 +151,7 @@
 
         xmlhttp.open("POST","http://localhost:3000/pizza/add",true);
         xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-        xmlhttp.send("size=" + size + "&dough=" + dough + "&sauce=" + sauce + "&cheese=" + cheeseString + "&toppings=" + toppingsString + "&price=" + price);
+        xmlhttp.send("size=" + size + "&dough=" + dough + "&sauce=" + sauce + +"&thickness=Regular"+"&cheese=" + cheeseString + "&toppings=" + toppingsString + "&price=" + price);
       }
   function customizeMeatLovers(){
     var size = $("#collapseOne .active input").val();
