@@ -357,8 +357,7 @@ var chedder,parm,nomoo;
 
   });
 
-
-
+console.log(price);
 
 
 
@@ -398,9 +397,8 @@ var chedder,parm,nomoo;
 
   xmlhttp.open("POST","http://localhost:3000/pizza/add",true);
   xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-  xmlhttp.send("size=" + size + "&dough=" + dough + "&sauce=" + sauce + "&cheese=" + cheeseString + "&toppings=" + toppingsString + "&price=" + price);
+  xmlhttp.send("size=" + size + "&dough=" + dough + "&sauce=" + sauce +"&thickness=Regular"+"&cheese=" + cheeseString + "&toppings=" + toppingsString + "&price=" + price);
 }
-
 
 
 function validateForm() {
@@ -429,20 +427,15 @@ function validateForm() {
   }else if ((x5 == "") && (x6 == "") && (x7 == "")) {
     alert("Please Pick a Cheese");
     return false;
+  }else {
+    sendPizzaData(size, dough, sauce, cheese, toppings, price);
+    alert("Added to Cart");
+    window.location.href = 'sides.html';
+    return false;
   }
 
 
-  console.log(size);
-  console.log(thick);
-  console.log(dough);
-  console.log(sauce);
-  console.log(cheese);
-  console.log(topping);
-  console.log(price);
 
-  sendPizzaData(size, dough, sauce, cheese, toppings, price);
-  alert("Added to Cart");
-  window.location.href = 'sides.html';
 }
 
   </script>
