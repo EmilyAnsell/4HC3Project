@@ -361,43 +361,43 @@ console.log(price);
 
 
 
-  function sendPizzaData(size, dough, sauce, cheese, toppings, price)
+function sendPizzaData(size, dough, sauce, thickness, cheese, toppings, price)
 {
-  var xmlhttp;
-  if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-    xmlhttp=new XMLHttpRequest();
-  }
-  else
-  {// code for IE6, IE5
-    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-  xmlhttp.onreadystatechange=function()
+var xmlhttp;
+if (window.XMLHttpRequest)
+{// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+}
+else
+{// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+}
+xmlhttp.onreadystatechange=function()
+{
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
   {
-    if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    {
-      alert('Item successfully added to cart');
-    }
+    alert('Item successfully added to cart');
   }
+}
 
-  var toppingsString = "";
-  var cheeseString = "";
+var toppingsString = "";
+var cheeseString = "";
 
-  for (var i = 0; i < toppings.length - 1; i++)
-  {
-    toppingsString += toppings[i].name + "-" + toppings[i].side + ",";
-  }
-  toppingsString += toppings[i].name + "-" + toppings[i].side;
+for (var i = 0; i < toppings.length - 1; i++)
+{
+  toppingsString += toppings[i].name + "-" + toppings[i].side + ",";
+}
+toppingsString += toppings[i].name + "-" + toppings[i].side;
 
-  for (var i = 0; i < cheese.length - 1; i++)
-  {
-    cheeseString += cheese[i].name + "-" + cheese[i].side + ",";
-  }
-  cheeseString += cheese[i].name + "-" + cheese[i].side;
+for (var i = 0; i < cheese.length - 1; i++)
+{
+  cheeseString += cheese[i].name + "-" + cheese[i].side + ",";
+}
+cheeseString += cheese[i].name + "-" + cheese[i].side;
 
-  xmlhttp.open("POST","http://localhost:3000/pizza/add",true);
-  xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-  xmlhttp.send("size=" + size + "&dough=" + dough + "&sauce=" + sauce +"&thickness=Regular"+"&cheese=" + cheeseString + "&toppings=" + toppingsString + "&price=" + price);
+xmlhttp.open("POST","http://localhost:3000/pizza/add",true);
+xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+xmlhttp.send("size=" + size + "&dough=" + dough + "&sauce=" + sauce +"&thickness="+thickness+"&cheese=" + cheeseString + "&toppings=" + toppingsString + "&price=" + price);
 }
 
 
@@ -444,13 +444,13 @@ function validateForm() {
 
   <nav class="navbar sticky-top navbar-dark bg-dark">
     <a class="navbar-brand" href="home.html"><img src="../images/Pizza4u-W.png" height="60%" width="30%"> </a>
-    <a class="navbar-brand" href="signature.html"> Signiture Pizza </a>
-    <a class="navbar-brand" href="#"> Specials </a>
+    <a class="navbar-brand" href="signature.html"> Signature Pizza </a>
+    <a class="navbar-brand" href="customize.html"> Custom Pizza </a>
     <a class="navbar-brand" href="sides.html"> Sides </a>
-    <a class="navbar-brand" href="#"> <i style='font-size:24px' class='fas'> &#xf07a;		</i> </a>
-
+    <a class="navbar-brand" href="checkout.html"> <i style='font-size:24px' class='fas'> &#xf07a;		</i> </a>
   </nav>
 </br>
+
   <div class="container-fluid">
       <div class="row">
           <div class="col-lg-3">
