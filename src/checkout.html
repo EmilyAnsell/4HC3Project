@@ -9,48 +9,6 @@
     overflow-y: auto; 
   }
 
-  .btn-circle {
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    padding: 6px 0;
-    font-size: 12px;
-    line-height: 1.428571429;
-    border-radius: 15px;
-  }
-  .btn-circle.btn-s {
-    width: 37px;
-    height: 37px;
-    padding: 6px 10px;
-    font-size: 16px;
-    line-height: 1.33;
-    border-radius: 20px;
-  }
-  .btn-circle.btn-m {
-    width: 50px;
-    height: 50px;
-    padding: 10px 16px;
-    font-size: 18px;
-    line-height: 1.33;
-    border-radius: 25px;
-  }
-  .btn-circle.btn-lg {
-    width: 70px;
-    height: 70px;
-    padding: 16px 16px;
-    font-size: 24px;
-    line-height: 1.33;
-    border-radius: 35px;
-  }
-  .btn-circle.btn-xl {
-    width: 85px;
-    height: 85px;
-    padding: 17px 16px;
-    font-size: 30px;
-    line-height: 1.33;
-    border-radius: 65px;
-  }
-
   </style>
 
 
@@ -71,7 +29,51 @@
 
 
   <script>
+    
+    
+    function ShowHideDiv() {
+        var chkpick = document.getElementById("chkpick");
+        var chkdeliv = document.getElementById("chkdeliv");
 
+        var picktext = document.getElementById("picktext");
+        picktext.style.display = chkpick.checked ? "block" : "none";
+
+        var delivtext = document.getElementById("delivtext");
+        delivtext.style.display = chkdeliv.checked ? "block" : "none";
+    }
+
+    function submitPickup(){
+      document.getElementById("pickmethod").innerHTML = "Pickup";
+        document.getElementById("address").innerHTML = "1280 Main Street West, Hamilton, ON, L8S 4L8";
+    }
+
+    function submitDelivery(){
+      var firstname = document.getElementById("firstname").value;
+      var lastname = document.getElementById("lastname").value;
+      var streetaddress = document.getElementById("streetaddress").value;
+      var city = document.getElementById("city").value;
+      var province = document.getElementById("province").value;
+      var postcode = document.getElementById("postcode").value;
+      
+      var address = firstname + " " + lastname
+      + ": \n " + streetaddress + ", " + city + ", " + province + ", " + postcode;
+
+      document.getElementById("pickmethod").innerHTML = "Delivery";
+      document.getElementById("address").innerHTML = address;
+    }
+
+    function submitPayMeth() {
+        var chkcash= document.getElementById("chkcash");
+        var chkcard = document.getElementById("chkcard");
+
+        var cashtext = document.getElementById("cashtext");
+        cashtext.style.display = chkcash.checked ? "block" : "none";
+
+        var cardtext = document.getElementById("cardtext");
+        cardtext.style.display = chkcard.checked ? "block" : "none";
+    }
+    
+//marlee's stuf
   var price;
   var smallPrice = 5;
   var mediumPrice = 10;
@@ -145,6 +147,7 @@
     document.getElementById("ifVeggie").style.display = "none";
   }
 }
+
 //If THis.hide.bs.collapse then + or -
   $(document).ready(function(){
     //collapse 1
@@ -190,6 +193,8 @@
 
   </nav>
 </br>
+
+</div>
   <div class="container-fluid">
       <div class="row">
           <div class="col-lg-3">
@@ -206,11 +211,18 @@
        
                 
                   <h4>Delivery/Pick-up</h4>
-                  <p>Variable for whichever method is selected - only shows up once selected?</p>
-                  <p>Street address, City, Postal code Phone number</p>
+                  <p id="pickmethod"></p>
+                  <p id="address"></p>
                   
                   <h4>Payment Method</h4>
-                   <p>Variable for whichever method is selected - only shows up once selected?</p>
+                  <p id="cashtext" style="display: none">
+                      Cash
+                  </p>
+                  <p id="cardtext" style="display: none">
+                      Debit/Credit
+                  </p>
+
+                  <h4>Order Total</h4>
               </div>
           </div>
 
@@ -227,40 +239,48 @@
                       </a>
                   </div>
                   <div id="collapseOne" class="collapse show" data-parent="#accordion">
-                    <div class="card-body">
+                    <div class="card-body" >
+                        <label for="chkpick">
+                            <input type="radio" name="dpmeth" id="chkpick" value="pickup" onclick="ShowHideDiv()"> Pickup
+                        </label>
+                        <label for="chkdeliv">
+                            <input type="radio" name="dpmeth" id="chkdeliv" value="delivery" onclick="ShowHideDiv()"> Delivery
+                        </label>
+                        <div id="picktext" style="display: none">
+                            Pickup your order at our location: 1280 Main Street West, Hamilton, ON, L8S 4L8
+                            <button class="btn btn-primary btn-lg btn-block" onclick="submitPickup()">Submit Delivery Details</button>
+                        </div>
 
-                        <form action="" display="inline">
-                            <input type="radio" name="dpmeth" value="pickup"> Pickup
-                            <input type="radio" name="dpmeth" value="delivery"> Delivery
-                        </form>
-                        <p>Sign-in/create account prompt</p>
-                        <form action="" display="inline">
-                          First name: <input type="text" name="firstname">
-                          Last name: <input type="text" name="lastname">
-                          <br>
-                          Street address: <input type="text" name="streetaddress">
-                          City: <input type="text" name="city">
-                          <br>
-                          Province: <input list="province_list" name="province">
-                          Postal code: <input type="text" name="postcode">
-                          <br>
-                          </form>
-                          <button class="btn btn-primary btn-lg btn-block">Submit Delivery Details</button>
-                        <datalist id="province_list">
-                          <option value="Alberta">
-                          <option value="British Columbia">
-                          <option value="Manitoba">
-                          <option value="New Brunswick">
-                          <option value="Newfoundland and Labrador">
-                          <option value="Northwest Territories">
-                          <option value="Nova Scotia">
-                          <option value="Nunavut">
-                          <option value="Ontario">
-                          <option value="Prince Edward Island">
-                          <option value="Quebec">
-                          <option value="Saskatchewan">
-                          <option value="Yukon">
-                        </datalist>
+                        <div id="delivtext" style="display: none">
+                            <p>Sign-in/create account prompt</p>
+                           
+                              First name: <input type="text" id="firstname">
+                              Last name: <input type="text" id="lastname">
+                              <br>
+                              Street address: <input type="text" id="streetaddress">
+                              City: <input type="text" id="city">
+                              <br>
+                              Province: <input list="province_list" id="province">
+                              Postal code: <input type="text" id="postcode">
+                              <br>
+                              <button class="btn btn-primary btn-lg btn-block" onclick="submitDelivery()">Submit Delivery Details</button>
+                            <datalist id="province_list">
+                              <option value="Alberta">
+                              <option value="British Columbia">
+                              <option value="Manitoba">
+                              <option value="New Brunswick">
+                              <option value="Newfoundland and Labrador">
+                              <option value="Northwest Territories">
+                              <option value="Nova Scotia">
+                              <option value="Nunavut">
+                              <option value="Ontario">
+                              <option value="Prince Edward Island">
+                              <option value="Quebec">
+                              <option value="Saskatchewan">
+                              <option value="Yukon">
+                            </datalist>
+                        </div>
+                        
                     </div>
                   </div>
                 </div>
@@ -276,13 +296,14 @@
                   </div>
                   <div id="collapseTwo" class="collapse" data-parent="#accordion">
                     <div class="card-body">
-
-                        <form action="" display="inline">
-                            <input type="radio" name="paymentmeth" value="cash"> Cash
-                            <input type="radio" name="paymentmeth" value="debitcredit"> Debit/Credit <sub>To be paid when you receive your order.</sub>
-                            <br>
-                            <button class="btn btn-primary btn-lg btn-block">Submit Payment Method</button>
-                        </form>
+                        <label for="chkcash">
+                            <input type="radio" name="paymeth" id="chkcash"> Cash
+                        </label>
+                        <label for="chkcard">
+                            <input type="radio" name="paymeth" id="chkcard"> Debit/Credit
+                        </label>
+                            <button class="btn btn-primary btn-lg btn-block" onclick="submitPayMeth()">Submit Payment Method</button>
+               
 
 
                     </div>
