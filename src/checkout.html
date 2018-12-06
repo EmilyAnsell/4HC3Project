@@ -69,7 +69,7 @@
             }
 
             document.getElementById("cart").innerHTML = cartList;
-            document.getElementById("totalprice").innerHTML = "<h5>Order total: $" +totalPrice +"</h5>";
+            document.getElementById("totalprice").innerHTML = "<h4>Order total: $" +totalPrice +"</h4>";
         }
     };
     xmlhttp.open("GET","http://localhost:3000/cart/view",true);
@@ -224,7 +224,6 @@
                   <h4> Your Order </h4>
 
                   <p id="cart"></p>
-                  <p id="totalprice"></p>
 
 
                   <h4>Delivery/Pick-up</h4>
@@ -239,8 +238,7 @@
                   <p id="cardtext" style="display: none">
                       Debit/Credit
                   </p>
-
-                  <h4>Order Total</h4>
+                  <p id="totalprice"></p>
               </div>
           </div>
 
