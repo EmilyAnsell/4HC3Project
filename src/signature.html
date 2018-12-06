@@ -67,7 +67,7 @@
 
   <script>
 	function addCanadian(){
-		     
+
         var size = $("#collapseFour .active input").val();;
         var dough = "white";
         var sauce = "marinara";
@@ -76,10 +76,10 @@
         var price = 6+(size === "s" ? 5 : size === "m" ? 10 : size === "l" ? 15 : 20);
 
         sendPizzaData(size, dough, sauce, cheese, toppings, price);
-      
+
 	}
 		function addVeggie(){
-		     
+
         var size = $("#collapseThree .active input").val();;
         var dough = "white";
         var sauce = "marinara";
@@ -88,10 +88,10 @@
         var price = 6+(size === "s" ? 5 : size === "m" ? 10 : size === "l" ? 15 : 20);
 
         sendPizzaData(size, dough, sauce, cheese, toppings, price);
-      
+
 	}
 		function addHawaiian(){
-		     
+
         var size = $("#collapseTwo .active input").val();;
         var dough = "white";
         var sauce = "marinara";
@@ -100,10 +100,10 @@
         var price = 4+(size === "s" ? 5 : size === "m" ? 10 : size === "l" ? 15 : 20);
 
         sendPizzaData(size, dough, sauce, cheese, toppings, price);
-      
+
 	}
 		function addMeatLovers(){
-		     
+
         var size = $("#collapseOne .active input").val();;
         var dough = "white";
         var sauce = "marinara";
@@ -112,9 +112,9 @@
         var price = 8+(size === "s" ? 5 : size === "m" ? 10 : size === "l" ? 15 : 20);
 
         sendPizzaData(size, dough, sauce, cheese, toppings, price);
-      
+
 	}
-		
+
         function sendPizzaData(size, dough, sauce, cheese, toppings, price)
       {
         var xmlhttp;
@@ -197,7 +197,7 @@
   function sizeCheck(that)
   {
     size = that.value;
-  
+
     console.log(size);
     return size;
 
@@ -258,9 +258,8 @@
   <nav class="navbar sticky-top navbar-dark bg-dark">
     <a class="navbar-brand" href="home.html"><img src="../images/Pizza4u-W.png" height="60%" width="30%"> </a>
     <a class="navbar-brand" href="signature.html"> Signiture Pizza </a>
-    <a class="navbar-brand" href="#"> Specials </a>
     <a class="navbar-brand" href="sides.html"> Sides </a>
-    <a class="navbar-brand" href="#"> <i style='font-size:24px' class='fas'> &#xf07a;   </i> </a>
+    <a class="navbar-brand" href="checkout.html"> <i style='font-size:24px' class='fas'> &#xf07a;   </i> </a>
 
   </nav>
 </br>
