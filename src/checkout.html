@@ -53,7 +53,7 @@
             for (var i = 0, l = allCart[0].length; i < l; i++){ //pizzas
               cartList += "Size: " + allCart[0][i].size +"<br>";
               cartList += "Sauce: " + allCart[0][i].sauce +"<br>";
-              cartList += "Crust Thickness: " + "NA<br>";
+              cartList += "Crust Thickness: " + allCart[0][i].thickness + "<br>";
               cartList += "Dough: " + allCart[0][i].dough +"<br>";
               cartList += "Cheese: " + allCart[0][i].cheese +"<br>";
               cartList += "Toppings: " + allCart[0][i].toppings +"<br>";
@@ -74,24 +74,6 @@
     };
     xmlhttp.open("GET","http://localhost:3000/cart/view",true);
     xmlhttp.send();
-
-    var cart = reqListener();
-
-
-    function reqListener () {
-      var allCart = console.log(this.responseText);
-      var cartList = "Pizza:\n";
-      var totalPrice = 0;
-
-      for (var pizza in allCart[0]){ //pizzas
-        cartList += "Size: " + pizza.size;
-      }
-      cartList += "Sides:\n"
-      for (var side in allCart[1]){
-        cartList += "Name: " + side.name;
-      }
-      return allCart;
-    }
 
     function ShowHideDiv() {
         var chkpick = document.getElementById("chkpick");
@@ -347,7 +329,13 @@
                   </div>
                   <div id="collapseThree" class="collapse" data-parent="#accordion">
                     <div class="card-body">
-                      <p>Are you ready to complete your order? Once our pizza experts receive your order it cannot be changed.</p>
+                      <p>Are you ready to complete your order? Once our pizza experts receive your order it cannot be changed. <br>If you have any instructions for our pizza experts, please describe them below.</p>
+                      <div class="input-group input-group-lg">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="inputGroup-sizing-default">Additional Instructions</span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+                      </div>
                       <button class="btn btn-primary btn-lg btn-block" id="submitorder" onclick="submitOrder()">Submit Order</button>
                     </div>
                   </div>
