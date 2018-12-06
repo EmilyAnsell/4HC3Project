@@ -357,48 +357,83 @@ var chedder,parm,nomoo;
 
   });
 
-console.log(price);
 
-
-
-function sendPizzaData(size, dough, sauce, thickness, cheese, toppings, price)
-{
-var xmlhttp;
-if (window.XMLHttpRequest)
-{// code for IE7+, Firefox, Chrome, Opera, Safari
-  xmlhttp=new XMLHttpRequest();
-}
-else
-{// code for IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-}
-xmlhttp.onreadystatechange=function()
-{
-  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+  function sendPizzaData(size, dough, sauce, cheese, toppings, price)
   {
-    alert('Item successfully added to cart');
+    var xmlhttp;
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {// code for IE6, IE5
+      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+        alert('Item successfully added to cart');
+      }
+    }
+
+    var toppingsString = "";
+    var cheeseString = "";
+
+    for (var i = 0; i < toppings.length - 1; i++)
+    {
+      toppingsString += toppings[i].name + "-" + toppings[i].side + ",";
+    }
+    toppingsString += toppings[i].name + "-" + toppings[i].side;
+
+    for (var i = 0; i < cheese.length - 1; i++)
+    {
+      cheeseString += cheese[i].name + "-" + cheese[i].side + ",";
+    }
+    cheeseString += cheese[i].name + "-" + cheese[i].side;
+
+    xmlhttp.open("POST","http://localhost:3000/pizza/add",true);
+    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xmlhttp.send("size=" + size + "&dough=" + dough + "&sauce=" + sauce + +"&thickness=Regular"+"&cheese=" + cheeseString + "&toppings=" + toppingsString + "&price=" + price);
   }
-}
 
-var toppingsString = "";
-var cheeseString = "";
+  function sendSilentPizzaData(size, dough, sauce, cheese, toppings, price)
+  {
+    var xmlhttp;
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {// code for IE6, IE5
+      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+      }
+    }
 
-for (var i = 0; i < toppings.length - 1; i++)
-{
-  toppingsString += toppings[i].name + "-" + toppings[i].side + ",";
-}
-toppingsString += toppings[i].name + "-" + toppings[i].side;
+    var toppingsString = "";
+    var cheeseString = "";
 
-for (var i = 0; i < cheese.length - 1; i++)
-{
-  cheeseString += cheese[i].name + "-" + cheese[i].side + ",";
-}
-cheeseString += cheese[i].name + "-" + cheese[i].side;
+    for (var i = 0; i < toppings.length - 1; i++)
+    {
+      toppingsString += toppings[i].name + "-" + toppings[i].side + ",";
+    }
+    toppingsString += toppings[i].name + "-" + toppings[i].side;
 
-xmlhttp.open("POST","http://localhost:3000/pizza/add",true);
-xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-xmlhttp.send("size=" + size + "&dough=" + dough + "&sauce=" + sauce +"&thickness="+thickness+"&cheese=" + cheeseString + "&toppings=" + toppingsString + "&price=" + price);
-}
+    for (var i = 0; i < cheese.length - 1; i++)
+    {
+      cheeseString += cheese[i].name + "-" + cheese[i].side + ",";
+    }
+    cheeseString += cheese[i].name + "-" + cheese[i].side;
+
+    xmlhttp.open("POST","http://localhost:3000/pizza/add",true);
+    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xmlhttp.send("size=" + size + "&dough=" + dough + "&sauce=" + sauce + "&cheese=" + cheeseString + "&toppings=" + toppingsString + "&price=" + price);
+  }
 
 
 function validateForm() {
@@ -428,8 +463,8 @@ function validateForm() {
     alert("Please Pick a Cheese");
     return false;
   }else {
-    sendPizzaData(size, dough, sauce, cheese, toppings, price);
-    alert("Added to Cart");
+    // alert(size+ dough+ sauce+ thick+ cheese+ topping+ price);
+    sendPizzaData(size, dough, sauce, thick, cheese, topping, price);
     window.location.href = 'sides.html';
     return false;
   }
