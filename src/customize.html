@@ -46,6 +46,7 @@
     border-radius: 65px;
   }
 
+
   </style>
 
 
@@ -67,13 +68,14 @@
 
   <script>
 
-  var price;
+  var size, dough, sauce;
+  var price = 0;
   var smallPrice = 5;
   var mediumPrice = 10;
   var largePrice = 15;
   var exlargePrice = 20;
-  var size = "none";
-
+  var cheese = [];
+  var topping = [];
   function sizeCheck(that)
   {
     size = that.value;
@@ -87,10 +89,11 @@
     }else if(size == "Extra Large"){
       price = exlargePrice;
     }
+    // price = priceTop
     document.getElementById("cost").innerHTML = "$" + price;
     console.log(size);
     console.log(price);
-    return size;
+    return price;
 
     // sendData(name, size, price);
   }
@@ -122,14 +125,7 @@
 
     // sendData(name, size, price);
   }
-  function cheeseCheck(that)
-  {
-    cheese = that.value;
-    document.getElementById("chooseCheese").innerHTML = cheese;
-    return cheese;
 
-    // sendData(name, size, price);
-  }
 
   function pickTopping(that){
     if (that.value == "Vegetables") {
@@ -140,6 +136,104 @@
     document.getElementById("ifVeggie").style.display = "none";
   }
 }
+
+
+  function halfs(that){
+    // topping = topping + 1
+    if (that.value == "left"){
+      priceTop = price + 1;
+      document.getElementById("cost").innerHTML = "$" + priceTop;
+      return "Left Side";
+
+    }
+    else if (that.value == "right"){
+      priceTop = price + 1;
+      document.getElementById("cost").innerHTML = "$" + priceTop;
+      return "Right Side";
+
+    }
+    else if (that.value == "centre"){
+      priceTop = price + 2;
+      document.getElementById("cost").innerHTML = "$" + priceTop;
+      return "both";
+    }
+  }
+
+
+var chedder,parm,nomoo;
+  function cheeseCheck(that){
+    sides = halfs(that);
+    // cheese = " Chedder " + side;
+    if(that.name == "chedder"){
+      document.getElementById("chedderChoice").innerHTML = " Chedder " + sides + "</br>";
+      chedder = {name: "chedder", side: sides};
+      cheese[0] = chedder;
+    }else if(that.name == "parm"){
+      document.getElementById("parmChoice").innerHTML = " Parmigiano " + sides + "</br>";
+      parm = {name: "parmigiano", side: sides};
+      cheese[1] = parm;
+    }else if(that.name == "noMoo"){
+      document.getElementById("nomooChoice").innerHTML =" Lactose Free "+  sides + "</br>";
+      nomoo = {name: "nomoo", side: sides};
+      cheese[2] = nomoo;
+
+    }
+    return cheese;
+
+    // sendData(name, size, price);
+  }
+
+  function toppingCheck(that){
+    side = halfs(that);
+    // cheese = " Chedder " + side;
+    if(that.name == "pep"){
+      document.getElementById("pepChoice").innerHTML = " Pepperoni " + side + "</br>";
+      pep = {name: "pepperoni", side: sides};
+      topping[0] = pep;
+    }else if(that.name == "bacon"){
+      document.getElementById("baconChoice").innerHTML = " Bacon " + side + "</br>";
+      bacon = {name: "bacon", side: sides};
+      topping[1] = bacon;
+    }else if(that.name == "saus"){
+      document.getElementById("sausChoice").innerHTML = " Sausage " + side + "</br>";
+      saus = {name: "sausage", side: sides};
+      topping[2] = saus;
+    }else if(that.name == "ham"){
+      document.getElementById("hamChoice").innerHTML = " Ham " + side + "</br>";
+      ham = {name: "ham", side: sides};
+      topping[3] = ham;
+    }else if(that.name == "pine"){
+      document.getElementById("pineChoice").innerHTML = " Pineapple " + side + "</br>";
+      pine = {name: "pineapple", side: sides};
+      topping[4] = pine;
+    }else if(that.name == "pepper"){
+      document.getElementById("pepperChoice").innerHTML = " Pepper " + side + "</br>";
+      pepper = {name: "pepper", side: sides};
+      topping[5] = pepper;
+    }else if(that.name == "mush"){
+      document.getElementById("mushChoice").innerHTML = " Mushroom " + side + "</br>";
+      mush = {name: "mushroom", side: sides};
+      topping[6] = mush;
+    }else if(that.name == "spin"){
+      document.getElementById("spinChoice").innerHTML = " Spinach " + side + "</br>";
+      spin = {name: "spinach", side: sides};
+      topping[7] = spin;
+    }
+    return topping;
+  }
+
+  function getQueryVariable(variable)
+  {
+         var query = window.location.search.substring(1);
+         var vars = query.split("&");
+         for (var i=0;i<vars.length;i++) {
+                 var pair = vars[i].split("=");
+                 if(pair[0] == variable){return pair[1];}
+         }
+         return(false);
+  }
+
+
 //If THis.hide.bs.collapse then + or -
   $(document).ready(function(){
     //collapse 1
@@ -182,42 +276,163 @@
       $(".accordion5").html('<div>Pick Toppings <span style="float:right;"><font size="+2"> -</font></span></span></div>');
     });
 
-// var test = document.getElementsByName("size").value;
-// console.log(test);
+
+
+
+
+
+    var special = getQueryVariable("signature");
+    console.log(special);
+    var special = getQueryVariable("size");
+
+    if (special == "canadian"){
+      console.log('TEST');
+      // document.getElementById('crust2').checked;
+    }else{
+      console.log('HMMM');
+      document.getElementById('crust2').checked = true;
+
+    }
+
 
   });
 
 
+  function sendPizzaData(size, dough, sauce, cheese, toppings, price)
+{
+  var xmlhttp;
+  if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp=new XMLHttpRequest();
+  }
+  else
+  {// code for IE6, IE5
+    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange=function()
+  {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+      alert('Item successfully added to cart');
+    }
+  }
 
+  var toppingsString = "";
+  var cheeseString = "";
+
+  for (var i = 0; i < toppings.length - 1; i++)
+  {
+    toppingsString += toppings[i].name + "-" + toppings[i].side + ",";
+  }
+  toppingsString += toppings[i].name + "-" + toppings[i].side;
+
+  for (var i = 0; i < cheese.length - 1; i++)
+  {
+    cheeseString += cheese[i].name + "-" + cheese[i].side + ",";
+  }
+  cheeseString += cheese[i].name + "-" + cheese[i].side;
+
+  xmlhttp.open("POST","http://localhost:3000/pizza/add",true);
+  xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+  xmlhttp.send("size=" + size + "&dough=" + dough + "&sauce=" + sauce + "&cheese=" + cheeseString + "&toppings=" + toppingsString + "&price=" + price);
+}
+
+function checkOut(){
+  console.log(size);
+  console.log(thick);
+  console.log(dough);
+  console.log(sauce);
+  console.log(cheese);
+  console.log(topping);
+  console.log(price);
+
+  sendPizzaData(size, dough, sauce, cheese, toppings, price);
+  alert("I am an alert box!");
+  window.location.href = 'sides.html';
+
+}
 
   </script>
 
   <nav class="navbar sticky-top navbar-dark bg-dark">
     <a class="navbar-brand" href="home.html"><img src="../images/Pizza4u-W.png" height="60%" width="30%"> </a>
     <a class="navbar-brand" href="signature.html"> Signiture Pizza </a>
+    <a class="navbar-brand" href="#"> Specials </a>
     <a class="navbar-brand" href="sides.html"> Sides </a>
-    <a class="navbar-brand" href="checkout.html"> <i style='font-size:24px' class='fas'> &#xf07a;		</i> </a>
+    <a class="navbar-brand" href="#"> <i style='font-size:24px' class='fas'> &#xf07a;		</i> </a>
 
   </nav>
 </br>
   <div class="container-fluid">
       <div class="row">
           <div class="col-lg-3">
-              <div  class="container" color="white" style="background-color:#343A40;color: white;">
-                <h4> Your Order </h4>
+              <div class="container">
+                  <h4> Your Order </h4>
+                    <table>
+                      <tr>
+                        <th>
+                          Size:
+                        </th>
+                        <th>
+                           <span id="chooseSize"> </span>
+                        </th>
+                      </tr>
+                      <tr>
+                        <th>
+                          Sauce:
+                        </th>
+                        <th>
+                          <span id="chooseSauce"> </span>
+                        </th>
+                      </tr>
+                      <tr>
+                        <th>
+                          Crust Thickness:
+                        </th>
+                        <th>
+                          <span id="chooseCrust"> </span>
+                        </th>
+                      </tr>
+                      <tr>
+                        <th>
+                          Dough:
+                        </th>
+                        <th>
+                          <span id="chooseDough"> </span>
+                        </th>
+                      </tr>
+                      <tr>
+                        <th>
+                            Cheese:
+                        </th>
+                        <th>
+                           <span id="chedderChoice"></span><span id="parmChoice"></span><span id="nomooChoice"></span>
+                        </th>
+                      </tr>
+                      <tr>
+                        <th>
+                          Toppings:
+                        </th>
+                        <th>
+                          <span id="pepChoice"> </span><span id="baconChoice"> </span><span id="sausChoice"> </span><span id="hamChoice"> </span><span id="pineChoice"> </span><span id="pepperChoice"> </span> <span id="mushChoice"> </span> <span id="spinChoice"> </span></br></br></br>
+                        </th>
+                      </tr>
+                      <tr>
+                        <th>
+                          Cost:
+                        </th>
+                        <th>
+                          <span id="cost"> -- </span>
+                        </th>
+                      </tr>
 
-                Size: <span id="chooseSize"> Not Selected</span></br>
-                Sauce: <span id="chooseSauce"> Not Selected</span></br>
-                Crust Thickness: <span id="chooseCrust"> Not Selected</span></br>
-                Dough: <span id="chooseDough"> Not Selected</span></br>
-                Cheese: <span id="chooseCheese"> Not Selected</span></br>
-                Toppings: <span id="chooseTop"> Not Selected</span></br></br></br>
-                Cost: <span id="cost"> -- </span>
-              </div>
+                    </table>
+                </div>
           </div>
 
           <div class="col-lg-9">
             <div class="container">
+
 
               <div id="accordion">
                 <div class="card">
@@ -234,7 +449,7 @@
                       <form>
                         <div class="btn-group-toggle" data-toggle="buttons">
                           <b>Available Sizes:</b>
-                          <label class="btn btn-secondary btn-circle btn-s active">
+                          <label class="btn btn-secondary btn-circle btn-s">
                             <input type="radio" name="size" id="Small" value="Small" autocomplete="off" onchange="sizeCheck(this)"> S
                           </label>
                           <label class="btn btn-secondary btn-circle btn-m">
@@ -269,18 +484,15 @@
 
                       <form>
                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                          <label class="btn btn-secondary active">
-                            <input type="radio" name="crust" id="crust1" value="Marinara" onchange="sauceCheck(this)" autocomplete="off"><img src="../images/custom/marinara.jpg" height="60%" width="100%"></br>  Marinara
+                          <label class="btn btn-secondary">
+                            <input type="radio" name="sause" id="sause1" value="Marinara" onchange="sauceCheck(this)" autocomplete="off"><img src="../images/custom/marinara.jpg" height="60%" width="100%"></br>  Marinara
                             <div class="right"> </div>
                           </label>
                           <label class="btn btn-secondary">
-                            <input type="radio" name="crust" id="crust2" value="Alfredo" onchange="sauceCheck(this)" autocomplete="off"><img src="../images/custom/alfredo.jpg" height="60%" width="100%"></br> Alfredo
+                            <input type="radio" name="sause" id="sause2" value="Alfredo" onchange="sauceCheck(this)" autocomplete="off"><img src="../images/custom/alfredo.jpg" height="60%" width="100%"></br> Alfredo
                           </label>
                           <label class="btn btn-secondary">
-                            <input type="radio" name="crust" id="crust3" value="Pesto" onchange="sauceCheck(this)" autocomplete="off"><img src="../images/custom/pesto.jpg" height="70%" width="100%"></br> Pesto
-                          </label>
-                          <label class="btn btn-secondary">
-                            <input type="radio" name="crust" id="crust4" value="BBQ" onchange="sauceCheck(this)" autocomplete="off"><img src="../images/custom/bbq.jpg" height="60%" width="100%"></br> BBQ
+                            <input type="radio" name="sause" id="sause3" value="BBQ" onchange="sauceCheck(this)" autocomplete="off"><img src="../images/custom/bbq.jpg" height="60%" width="70%"></br> BBQ
                           </label>
                         </div>
 
@@ -306,7 +518,7 @@
                                 <form>
                                   <span> Choose Crust Thinkness:     </span>
                                   <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                    <label class="btn btn-secondary active">
+                                    <label class="btn btn-secondary">
                                       <input type="radio" name="thick" id="thick1" value="Thin" onchange="thickCheck(this)" autocomplete="off" > Thin
                                     </label>
                                     <label class="btn btn-secondary">
@@ -319,7 +531,7 @@
                                 </br>
                                 </br>
                                   <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                    <label class="btn btn-secondary active">
+                                    <label class="btn btn-secondary">
                                       <input type="radio" name="crust" id="crust1" value="White" onchange="doughCheck(this)" autocomplete="off" ><img src="../images/custom/white.jpg" height="80%" width="60%" ></br>  White
                                     </label>
                                     <label class="btn btn-secondary">
@@ -352,16 +564,15 @@
                         <div class="col-lg-4">
                           Chedder</br>
                           <img src="../images/custom/cheddar.jpg" height="60%" width="60%"></br>
-
                           <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                            <label class="btn btn-secondary active">
-                              <input type="radio" name="chedder" id="chedder1" autocomplete="off" value="Chedder Left"><i style='font-size:24px' class='fas'>&#x25d6;</i>
+                            <label class="btn btn-secondary">
+                              <input type="radio" name="chedder" id="chedder1" autocomplete="off" value="left" onchange="cheeseCheck(this)"><i style='font-size:24px' class='fas'>&#x25d6;</i></br>Left
                             </label>
                             <label class="btn btn-secondary">
-                              <input type="radio" name="chedder" id="chedder2" autocomplete="off"  value="Chedder" > <i class='fas fa-circle'></i>
+                              <input type="radio" name="chedder"  onchange="cheeseCheck(this)" id="chedder2" autocomplete="off"  value="centre" > <i class='fas fa-circle'></i></br>Whole
                             </label>
                             <label class="btn btn-secondary">
-                              <input type="radio" name="chedder" id="chedder3" autocomplete="off"  value="Chedder Right"> <i style='font-size:24px' class='fas'> &#9687;	</i>
+                              <input type="radio" name="chedder" id="chedder3" onchange="cheeseCheck(this)" autocomplete="off"  value="right"> <i style='font-size:24px' class='fas'> &#9687;	</i></br>Right
                             </label>
                           </div>
                         </div>
@@ -369,20 +580,31 @@
                           Parmigiano</br>
                           <img src="../images/custom/parmigiano.jpg" height="60%" width="60%"></br>
                           <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                            <label class="btn btn-secondary active">
-                              <input type="radio" name="parmigiano" id="parmigiano1" autocomplete="off" value="Parmigiano Left"><i style='font-size:24px' class='fas'>&#x25d6;</i>
+                            <label class="btn btn-secondary">
+                              <input type="radio" name="parm" id="parm1" autocomplete="off" value="left" onchange="cheeseCheck(this)"><i style='font-size:24px' class='fas'>&#x25d6;</i></br>Left
                             </label>
                             <label class="btn btn-secondary">
-                              <input type="radio" name="parmigiano" id="parmigiano2" autocomplete="off"  value="Parmigiano" > <i class='fas fa-circle'></i>
+                              <input type="radio" name="parm"  onchange="cheeseCheck(this)" id="parm2" autocomplete="off"  value="centre" > <i class='fas fa-circle'></i></br>Whole
                             </label>
                             <label class="btn btn-secondary">
-                              <input type="radio" name="parmigiano" id="parmigiano3" autocomplete="off"  value="Parmigiano Right"> <i style='font-size:24px' class='fas'> &#9687;	</i>
+                              <input type="radio" name="parm" id="parm3" onchange="cheeseCheck(this)" autocomplete="off"  value="right"> <i style='font-size:24px' class='fas'> &#9687;	</i></br>Right
                             </label>
                           </div>
                         </div>
                         <div class="col-lg-4">
                           Lactose Free </br>
-                          <img src="../images/custom/no-moo.jpg" height="80%" width="60%">
+                          <img src="../images/custom/no-moo.jpg" height="60%" width="60%">
+                          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-secondary">
+                              <input type="radio" name="noMoo" id="noMoo1" autocomplete="off" value="left" onchange="cheeseCheck(this)"><i style='font-size:24px' class='fas'>&#x25d6;</i></br>Left
+                            </label>
+                            <label class="btn btn-secondary">
+                              <input type="radio" name="noMoo"  onchange="cheeseCheck(this)" id="noMoo2" autocomplete="off"  value="centre" > <i class='fas fa-circle'></i></br>Whole
+                            </label>
+                            <label class="btn btn-secondary">
+                              <input type="radio" name="noMoo" id="noMoo3" onchange="cheeseCheck(this)" autocomplete="off"  value="right"> <i style='font-size:24px' class='fas'> &#9687;	</i></br>Right
+                            </label>
+                          </div>
                         </div>
                       </div>
                       </div>
@@ -417,7 +639,7 @@
                     <div class="card-body">
 
                       <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                        <label class="btn btn-secondary active">
+                        <label class="btn btn-secondary">
                           <input type="radio" name="topping" id="topping1"  autocomplete="off"  value="Meat"  onchange="pickTopping(this)" data-toggle="modal"  id="meat">Meat
                         </label>
 
@@ -427,22 +649,141 @@
                       </div>
 
                       <div id="ifMeat" style="display: block;">
-                      </br>
-                        <button class= "btn btn-secondary btn-lg btn-block"> Pepperoni </button>
-                        <button class= "btn btn-secondary btn-lg btn-block"> Bacon </button>
-                        <button class= "btn btn-secondary btn-lg btn-block"> Sausage </button>
-                        <button class= "btn btn-secondary btn-lg btn-block"> Meats? </button>
+
+                        <div class="container-fluid">
+                          <div class="row">
+                          <div class="col-lg-3">
+                            Pepperoni</br>
+                            <img src="../images/custom/pepperoni.jpg" height="60%" width="60%">
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                              <label class="btn btn-secondary">
+                                <input type="radio" name="pep" id="pep1" autocomplete="off" value="left" onchange="toppingCheck(this)"><i style='font-size:24px' class='fas'>&#x25d6;</i></br>Left
+                              </label>
+                              <label class="btn btn-secondary">
+                                <input type="radio" name="pep"  onchange="toppingCheck(this)" id="pep2" autocomplete="off"  value="centre" > <i class='fas fa-circle'></i></br>Whole
+                              </label>
+                              <label class="btn btn-secondary">
+                                <input type="radio" name="pep" id="pep3" onchange="toppingCheck(this)" autocomplete="off"  value="right"> <i style='font-size:24px' class='fas'> &#9687;	</i></br>Right
+                              </label>
+                            </div>
+                          </div>
+                          <div class="col-lg-3">
+                            Bacon</br>
+                            <img src="../images/custom/bacon.jpg" height="60%" width="60%">
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                              <label class="btn btn-secondary">
+                                <input type="radio" name="bacon" id="bacon1" autocomplete="off" value="left" onchange="toppingCheck(this)"><i style='font-size:24px' class='fas'>&#x25d6;</i></br>Left
+                              </label>
+                              <label class="btn btn-secondary">
+                                <input type="radio" name="bacon"  onchange="toppingCheck(this)" id="bacon2" autocomplete="off"  value="centre" > <i class='fas fa-circle'></i></br>Whole
+                              </label>
+                              <label class="btn btn-secondary">
+                                <input type="radio" name="bacon" id="bacon3" onchange="toppingCheck(this)" autocomplete="off"  value="right"> <i style='font-size:24px' class='fas'> &#9687;	</i></br>Right
+                              </label>
+                            </div>
+                          </div>
+                          <div class="col-lg-3">
+                            Sausage </br>
+                            <img src="../images/custom/sausage.jpg" height="60%" width="60%">
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                              <label class="btn btn-secondary">
+                                <input type="radio" name="saus" id="saus1" autocomplete="off" value="left" onchange="toppingCheck(this)"><i style='font-size:24px' class='fas'>&#x25d6;</i></br>Left
+                              </label>
+                              <label class="btn btn-secondary">
+                                <input type="radio" name="saus"  onchange="toppingCheck(this)" id="saus2" autocomplete="off"  value="centre" > <i class='fas fa-circle'></i></br>Whole
+                              </label>
+                              <label class="btn btn-secondary">
+                                <input type="radio" name="saus" id="saus3" onchange="toppingCheck(this)" autocomplete="off"  value="right"> <i style='font-size:24px' class='fas'> &#9687;	</i></br>Right
+                              </label>
+                            </div>
+                          </div>
+                            <div class="col-lg-3">
+                              Ham </br>
+                              <img src="../images/custom/ham.jpg" height="60%" width="60%">
+                              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <label class="btn btn-secondary">
+                                  <input type="radio" name="ham" id="ham1" autocomplete="off" value="left" onchange="toppingCheck(this)"><i style='font-size:24px' class='fas'>&#x25d6;</i></br>Left
+                                </label>
+                                <label class="btn btn-secondary">
+                                  <input type="radio" name="ham"  onchange="toppingCheck(this)" id="ham2" autocomplete="off"  value="centre" > <i class='fas fa-circle'></i></br>Whole
+                                </label>
+                                <label class="btn btn-secondary">
+                                  <input type="radio" name="ham" id="ham3" onchange="toppingCheck(this)" autocomplete="off"  value="right"> <i style='font-size:24px' class='fas'> &#9687;	</i></br>Right
+                                </label>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
                       </div>
 
                       <div id="ifVeggie" style="display: none;">
-                      </br>
-                        <button class= "btn btn-secondary btn-lg btn-block"> Pineapple </button>
-                        <button class= "btn btn-secondary btn-lg btn-block"> Pepper </button>
-                        <button class= "btn btn-secondary btn-lg btn-block"> Mushroom </button>
+
+                          <div class="container-fluid">
+                            <div class="row">
+                            <div class="col-lg-3">
+                              Pineapple</br>
+                              <img src="../images/custom/pineapple.jpg" height="50%" width="60%">
+                              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <label class="btn btn-secondary">
+                                  <input type="radio" name="pine" id="pine1" autocomplete="off" value="left" onchange="toppingCheck(this)"><i style='font-size:24px' class='fas'>&#x25d6;</i></br>Left
+                                </label>
+                                <label class="btn btn-secondary">
+                                  <input type="radio" name="pine"  onchange="toppingCheck(this)" id="pine2" autocomplete="off"  value="centre" > <i class='fas fa-circle'></i></br>Whole
+                                </label>
+                                <label class="btn btn-secondary">
+                                  <input type="radio" name="pine" id="pine3" onchange="toppingCheck(this)" autocomplete="off"  value="right"> <i style='font-size:24px' class='fas'> &#9687;	</i></br>Right
+                                </label>
+                              </div>
+                            </div>
+                            <div class="col-lg-3">
+                              Pepper</br>
+                              <img src="../images/custom/peper.jpg" height="50%" width="70%">
+                              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <label class="btn btn-secondary">
+                                  <input type="radio" name="pepper" id="pepper1" autocomplete="off" value="left" onchange="toppingCheck(this)"><i style='font-size:24px' class='fas'>&#x25d6;</i></br>Left
+                                </label>
+                                <label class="btn btn-secondary">
+                                  <input type="radio" name="pepper"  onchange="toppingCheck(this)" id="pepper2" autocomplete="off"  value="centre" > <i class='fas fa-circle'></i></br>Whole
+                                </label>
+                                <label class="btn btn-secondary">
+                                  <input type="radio" name="pepper" id="pepper3" onchange="toppingCheck(this)" autocomplete="off"  value="right"> <i style='font-size:24px' class='fas'> &#9687;	</i></br>Right
+                                </label>
+                              </div>
+                            </div>
+                            <div class="col-lg-3">
+                              Mushroom </br>
+                              <img src="../images/custom/mushroom.jpg" height="50%" width="70%">
+                              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <label class="btn btn-secondary">
+                                  <input type="radio" name="mush" id="mush1" autocomplete="off" value="left" onchange="toppingCheck(this)"><i style='font-size:24px' class='fas'>&#x25d6;</i></br>Left
+                                </label>
+                                <label class="btn btn-secondary">
+                                  <input type="radio" name="mush"  onchange="toppingCheck(this)" id="mush2" autocomplete="off"  value="centre" > <i class='fas fa-circle'></i></br>Whole
+                                </label>
+                                <label class="btn btn-secondary">
+                                  <input type="radio" name="mush" id="mush3" onchange="toppingCheck(this)" autocomplete="off"  value="right"> <i style='font-size:24px' class='fas'> &#9687;	</i></br>Right
+                                </label>
+                              </div>
+                            </div>
+                              <div class="col-lg-3">
+                                Spinach </br>
+                                <img src="../images/custom/Spinach.jpg" height="50%" width="70%">
+                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                  <label class="btn btn-secondary">
+                                    <input type="radio" name="spin" id="spin1" autocomplete="off" value="left" onchange="toppingCheck(this)"><i style='font-size:24px' class='fas'>&#x25d6;</i></br>Left
+                                  </label>
+                                  <label class="btn btn-secondary">
+                                    <input type="radio" name="spin"  onchange="toppingCheck(this)" id="spin2" autocomplete="off"  value="centre" > <i class='fas fa-circle'></i></br>Whole
+                                  </label>
+                                  <label class="btn btn-secondary">
+                                    <input type="radio" name="spin" id="spin3" onchange="toppingCheck(this)" autocomplete="off"  value="right"> <i style='font-size:24px' class='fas'> &#9687;	</i></br>Right
+                                  </label>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+
                        </div>
-
-
-
 
 
                     </div>
@@ -450,6 +791,9 @@
                 </div>
 
               </div>
+
+              <button class= "btn btn-primary btn-lg btn-block" onsubmit="checkOut()"> Add to Cart </button>
+
             </div>
 
 
