@@ -358,7 +358,11 @@ var chedder,parm,nomoo;
   });
 
 
-  function sendPizzaData(size, dough, sauce, thickness, cheese, toppings, price)
+
+
+
+
+  function sendPizzaData(size, dough, sauce, cheese, toppings, price)
 {
   var xmlhttp;
   if (window.XMLHttpRequest)
@@ -394,7 +398,7 @@ var chedder,parm,nomoo;
 
   xmlhttp.open("POST","http://localhost:3000/pizza/add",true);
   xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-  xmlhttp.send("size=" + size + "&dough=" + dough + "&sauce=" + sauce +"&thickness="+thickness+"&cheese=" + cheeseString + "&toppings=" + toppingsString + "&price=" + price);
+  xmlhttp.send("size=" + size + "&dough=" + dough + "&sauce=" + sauce + "&cheese=" + cheeseString + "&toppings=" + toppingsString + "&price=" + price);
 }
 
 
@@ -425,15 +429,20 @@ function validateForm() {
   }else if ((x5 == "") && (x6 == "") && (x7 == "")) {
     alert("Please Pick a Cheese");
     return false;
-  }else {
-    // alert(size+ dough+ sauce+ thick+ cheese+ topping+ price);
-    sendPizzaData(size, dough, sauce, thick, cheese, topping, price);
-    window.location.href = 'sides.html';
-    return false;
   }
 
 
+  console.log(size);
+  console.log(thick);
+  console.log(dough);
+  console.log(sauce);
+  console.log(cheese);
+  console.log(topping);
+  console.log(price);
 
+  sendPizzaData(size, dough, sauce, cheese, toppings, price);
+  alert("Added to Cart");
+  window.location.href = 'sides.html';
 }
 
   </script>
@@ -442,13 +451,13 @@ function validateForm() {
 
   <nav class="navbar sticky-top navbar-dark bg-dark">
     <a class="navbar-brand" href="home.html"><img src="../images/Pizza4u-W.png" height="60%" width="30%"> </a>
-    <a class="navbar-brand" href="signature.html"> Signature Pizza </a>
-    <a class="navbar-brand" href="customize.html"> Custom Pizza </a>
+    <a class="navbar-brand" href="signature.html"> Signiture Pizza </a>
+    <a class="navbar-brand" href="#"> Specials </a>
     <a class="navbar-brand" href="sides.html"> Sides </a>
-    <a class="navbar-brand" href="checkout.html"> <i style='font-size:24px' class='fas'> &#xf07a;		</i> </a>
+    <a class="navbar-brand" href="#"> <i style='font-size:24px' class='fas'> &#xf07a;		</i> </a>
+
   </nav>
 </br>
-
   <div class="container-fluid">
       <div class="row">
           <div class="col-lg-3">
