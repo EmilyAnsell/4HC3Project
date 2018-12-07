@@ -76,6 +76,8 @@
     var mediumPrice = 10;
     var largePrice = 15;
     var exlargePrice = 20;
+    var total;
+
     var cheese = [{
       name: "cheddar",
       side: "none"
@@ -112,6 +114,34 @@
       side: "none"
     }];
 
+    function priceCount() {
+      total = 0;
+      topBoth = [];
+      topSide = [];
+      cheeBoth = [];
+      cheeSide = [];
+      for (i = 0; i < topping.length; i++) {
+        if (topping[i].side == "both") {
+          topBoth.push(topping[i]);
+        } else if ((topping[i].side == "Left Side") || (topping[i].side == "Right Side")) {
+          topSide.push(topping[i]);
+        }
+      }
+
+      for (i = 0; i < cheese.length; i++) {
+        if (cheese[i].side == "both") {
+          cheeBoth.push(cheese[i]);
+        } else if ((cheese[i].side == "Left Side") || (cheese[i].side == "Right Side")) {
+          cheeSide.push(cheese[i]);
+        }
+      }
+      both = ((topBoth.length + cheeBoth.length) * 2);
+      side = ((topSide.length + cheeSide.length) * 1);
+      total = both + side;
+      document.getElementById("cost").innerHTML = "$" + (price + total);
+      return total;
+    }
+
     function sizeCheck(that) {
       size = that.value;
       document.getElementById("chooseSize").innerHTML = size;
@@ -124,13 +154,9 @@
       } else if (size == "Extra Large") {
         price = exlargePrice;
       }
-      // price = priceTop
-      document.getElementById("cost").innerHTML = "$" + price;
-      console.log(size);
-      console.log(price);
+      priceCount();
       return price;
 
-      // sendData(name, size, price);
     }
 
     function sizeSpecial(name) {
@@ -145,11 +171,8 @@
       } else if (size == "Extra Large") {
         price = exlargePrice;
       }
-      // price = priceTop
-      document.getElementById("cost").innerHTML = "$" + price;
+      priceCount();
       return price;
-
-      // sendData(name, size, price);
     }
 
     function sauceCheck(that) {
@@ -157,16 +180,13 @@
       document.getElementById("chooseSauce").innerHTML = sauce;
       return sauce;
 
-
-      // sendData(name, size, price);
     }
+
     function sauceSpecial(name) {
       sauce = name;
       document.getElementById("chooseSauce").innerHTML = sauce;
       return sauce;
 
-
-      // sendData(name, size, price);
     }
 
     function thickCheck(that) {
@@ -174,14 +194,13 @@
       document.getElementById("chooseCrust").innerHTML = thick;
       return thick;
 
-      // sendData(name, size, price);
     }
+
     function thickSpecial(name) {
       thick = name;
       document.getElementById("chooseCrust").innerHTML = name;
       return thick;
 
-      // sendData(name, size, price);
     }
 
     function doughCheck(that) {
@@ -189,7 +208,6 @@
       document.getElementById("chooseDough").innerHTML = dough;
       return dough;
 
-      // sendData(name, size, price);
     }
 
     function doughSpecial(name) {
@@ -210,48 +228,36 @@
 
 
     function halfs(that) {
-      // topping = topping + 1
       if (that.value == "left") {
-        priceTop = price + 1;
-        document.getElementById("cost").innerHTML = "$" + priceTop;
         return "Left Side";
-
       } else if (that.value == "right") {
-        priceTop = price + 1;
-        document.getElementById("cost").innerHTML = "$" + priceTop;
         return "Right Side";
-
       } else if (that.value == "centre") {
-        priceTop = price + 2;
-        document.getElementById("cost").innerHTML = "$" + priceTop;
         return "both";
       } else if (that.value == "none") {
-        priceTop = price;
-        document.getElementById("cost").innerHTML = "$" + priceTop;
         return "none";
       }
     }
 
 
-    var chedder, parm, nomoo;
+    var cheddar, parm, nomoo;
 
     function cheeseCheck(that) {
       sides = halfs(that);
-      // cheese = " Chedder " + side;
-      if ((that.name == "chedder") && (sides != "none")) {
-        document.getElementById("chedderChoice").innerHTML = " Chedder " + sides + "</br>";
-        chedder = {
-          name: "chedder",
+      if ((that.name == "cheddar") && (sides != "none")) {
+        document.getElementById("cheddarChoice").innerHTML = " cheddar " + sides + "</br>";
+        cheddar = {
+          name: "cheddar",
           side: sides
         };
-        cheese[0] = chedder;
-      } else if ((that.name == "chedder") && (sides == "none")) {
-        document.getElementById("chedderChoice").innerHTML = " ";
-        chedder = {
-          name: "chedder",
+        cheese[0] = cheddar;
+      } else if ((that.name == "cheddar") && (sides == "none")) {
+        document.getElementById("cheddarChoice").innerHTML = " ";
+        cheddar = {
+          name: "cheddar",
           side: sides
         };
-        cheese[0] = chedder;
+        cheese[0] = cheddar;
       } else if ((that.name == "parm") && (sides != "none")) {
         document.getElementById("parmChoice").innerHTML = " Parmigiano " + sides + "</br>";
         parm = {
@@ -281,26 +287,25 @@
         };
         cheese[2] = nomoo;
       }
+      priceCount();
       return cheese;
 
-      // sendData(name, size, price);
     }
 
     function cheeseSpecial(name) {
-      if (name == "chedder") {
-        document.getElementById("chedderChoice").innerHTML = " Chedder both </br>";
-        chedder = {
-          name: "chedder",
+      if (name == "cheddar") {
+        document.getElementById("cheddarChoice").innerHTML = " cheddar both </br>";
+        cheddar = {
+          name: "cheddar",
           side: "both"
         };
-        cheese[0] = chedder;
+        cheese[0] = cheddar;
       }
       return cheese;
     }
 
     function toppingCheck(that) {
       sides = halfs(that);
-      // cheese = " Chedder " + side;
       if ((that.name == "pep") && (sides != "none")) {
         document.getElementById("pepChoice").innerHTML = " Pepperoni " + sides + "</br>";
         pep = {
@@ -414,6 +419,7 @@
         };
         topping[7] = spin;
       }
+      priceCount();
       return topping;
     }
 
@@ -432,7 +438,7 @@
           side: "both"
         };
         topping[1] = bacon;
-      } else if (name == "saus")  {
+      } else if (name == "saus") {
         document.getElementById("sausChoice").innerHTML = " Sausage both </br>";
         saus = {
           name: "sausage",
@@ -446,7 +452,7 @@
           side: "both"
         };
         topping[3] = ham;
-      }  else if (name == "pine") {
+      } else if (name == "pine") {
         document.getElementById("pineChoice").innerHTML = " Pineapple both </br>";
         pine = {
           name: "pineapple",
@@ -539,18 +545,17 @@
       var special = getQueryVariable("signature");
       var sentSize = getQueryVariable("size");
 
-      if (sentSize == "Small"){
+      if (sentSize == "Small") {
         $("#label_s").addClass("active");
-      }else if (sentSize == "Medium"){
+      } else if (sentSize == "Medium") {
         $("#label_m").addClass("active");
-      }else if (sentSize == "Large"){
+      } else if (sentSize == "Large") {
         $("#label_l").addClass("active");
-      }else if (sentSize == "Extra%20Large"){
+      } else if (sentSize == "Extra%20Large") {
         $("#label_xl").addClass("active");
       }
 
       if (special == "MeatLovers") {
-        console.log("MeatLover");
         $("#label_mari").addClass("active");
         $("#label_reg").addClass("active");
         $("#label_white").addClass("active");
@@ -561,20 +566,20 @@
         $("#label_saus").addClass("active");
         $("#label_ham").addClass("active");
 
-        sizeSpecial(sentSize);
 
         sauceSpecial("Marinara");
-        thickSpecial("Normal");
+        thickSpecial("Regular");
         doughSpecial("White");
-        cheeseSpecial("chedder");
+        cheeseSpecial("cheddar");
 
         toppingSpecial("pep");
         toppingSpecial("bacon");
         toppingSpecial("saus");
         toppingSpecial("ham");
+        sizeSpecial(sentSize);
 
 
-      } else if ( special == "Hawaiian") {
+      } else if (special == "Hawaiian") {
         $("#label_mari").addClass("active");
         $("#label_reg").addClass("active");
         $("#label_white").addClass("active");
@@ -582,16 +587,16 @@
 
         $("#label_ham").addClass("active");
         $("#label_pine").addClass("active");
-        sizeSpecial(sentSize);
         sauceSpecial("Marinara");
-        thickSpecial("Normal");
+        thickSpecial("Regular");
         doughSpecial("White");
-        cheeseSpecial("chedder");
+        cheeseSpecial("cheddar");
 
         toppingSpecial("ham");
         toppingSpecial("pine");
+        sizeSpecial(sentSize);
 
-      }else if ( special == "Veggie") {
+      } else if (special == "Veggie") {
         $("#label_mari").addClass("active");
         $("#label_reg").addClass("active");
         $("#label_white").addClass("active");
@@ -600,17 +605,18 @@
         $("#label_spin").addClass("active");
         $("#label_mush").addClass("active");
         $("#label_pepper").addClass("active");
-        sizeSpecial(sentSize);
         sauceSpecial("Marinara");
-        thickSpecial("Normal");
+        thickSpecial("Regular");
         doughSpecial("White");
-        cheeseSpecial("chedder");
+        cheeseSpecial("cheddar");
 
         toppingSpecial("spin");
         toppingSpecial("mush");
         toppingSpecial("pepper");
+        sizeSpecial(sentSize);
 
-      }else if ( special == "Canadian") {
+
+      } else if (special == "Canadian") {
         $("#label_mari").addClass("active");
         $("#label_reg").addClass("active");
         $("#label_white").addClass("active");
@@ -619,15 +625,15 @@
         $("#label_pep").addClass("active");
         $("#label_bacon").addClass("active");
         $("#label_mush").addClass("active");
-        sizeSpecial(sentSize);
         sauceSpecial("Marinara");
-        thickSpecial("Normal");
+        thickSpecial("Regular");
         doughSpecial("White");
-        cheeseSpecial("chedder");
+        cheeseSpecial("cheddar");
 
         toppingSpecial("pep");
         toppingSpecial("bacon");
         toppingSpecial("mush");
+        sizeSpecial(sentSize);
 
       }
 
@@ -652,15 +658,12 @@
       var toppingsString = "";
       var cheeseString = "";
 
-      for (var i = 0; i < toppings.length - 1; i++)
-      {
-        if(!(toppings[i].side == "none"))
-        {
+      for (var i = 0; i < toppings.length - 1; i++) {
+        if (!(toppings[i].side == "none")) {
           toppingsString += toppings[i].name + "-" + toppings[i].side + ",";
         }
       }
-      if(!(toppings[i].side == "none"))
-      {
+      if (!(toppings[i].side == "none")) {
         toppingsString += toppings[i].name + "-" + toppings[i].side;
       }
 
@@ -670,8 +673,7 @@
         }
       }
 
-      if (!(cheese[i].side == "none"))
-      {
+      if (!(cheese[i].side == "none")) {
         cheeseString += cheeses[i].name + "-" + cheeses[i].side;
       }
 
@@ -681,38 +683,21 @@
     }
 
 
-
     function validateForm() {
       var x1 = document.forms["myForm"]["size"].value;
-      var x2 = document.forms["myForm"]["sause"].value;
+      var x2 = document.forms["myForm"]["sauce"].value;
       var x3 = document.forms["myForm"]["thick"].value;
       var x4 = document.forms["myForm"]["crust"].value;
 
-      var x5 = document.forms["myForm"]["chedder"].value;
+      var x5 = document.forms["myForm"]["cheddar"].value;
       var x6 = document.forms["myForm"]["parm"].value;
       var x7 = document.forms["myForm"]["noMoo"].value;
 
-
-      // if ((size == "")) {
-      //   alert("Please Pick a Size");
-      //   return false;
-      // } else if (sauce == "") {
-      //   alert("Please Pick a Sauce");
-      //   return false;
-      // } else if (thick == "") {
-      //   alert("Please Pick a Thickness");
-      //   return false;
-      // } else if (dough == "") {
-      //   alert("Please Pick a Crust");
-      //   return false;
-      // } else if (cheese == "") {
-      //   alert("Please Pick a Cheese");
-      //   return false;
-      if (special == false){
-        if (x1 == "")  {
+      if (special == false) {
+        if (x1 == "") {
           alert("Please Pick a Size");
           return false;
-        } else if (x2 == "")  {
+        } else if (x2 == "") {
           alert("Please Pick a Sauce");
           return false;
         } else if (x3 == "") {
@@ -721,22 +706,19 @@
         } else if (x4 == "") {
           alert("Please Pick a Crust");
           return false;
-        } else if ((x5 == "") && (x6 =="") && (x7 =="")) {
+        } else if ((x5 == "") && (x6 == "") && (x7 == "")) {
           alert("Please Pick a Cheese");
           return false;
         } else {
-          alert(size + dough + sauce + thick + cheese + topping + price);
-          sendPizzaData(size, dough, sauce, thick, cheese, topping, price);
+          sendPizzaData(size, dough, sauce, thick, cheese, topping, (price + total));
           return false;
         }
-      }else {
-        alert(size + dough + sauce + thick + cheese + topping + price);
-        sendPizzaData(size, dough, sauce, thick, cheese, topping, price);
+      } else {
+        sendPizzaData(size, dough, sauce, thick, cheese, topping, (price + total));
         return false;
       }
 
     }
-
   </script>
 
 
@@ -749,6 +731,7 @@
     <a class="navbar-brand" href="checkout.html"> <i style='font-size:24px' class='fas'> &#xf07a;		</i> </a>
   </nav>
   </br>
+
 
 
   <div class="container-fluid">
@@ -794,7 +777,7 @@
                 Cheese:
               </th>
               <th>
-                <span id="chedderChoice"></span><span id="parmChoice"></span><span id="nomooChoice"></span>
+                <span id="cheddarChoice"></span><span id="parmChoice"></span><span id="nomooChoice"></span>
               </th>
             </tr>
             <tr>
@@ -873,17 +856,17 @@
 
                   <div class="btn-group btn-group-toggle" data-toggle="buttons">
                     <label id="label_mari" class="btn btn-secondary">
-                            <input type="radio" name="sause" id="sause1" value="Marinara" onchange="sauceCheck(this)" autocomplete="off"><img src="../images/custom/marinara.jpg" height="60%" width="100%"></br>  Marinara
+                            <input type="radio" name="sauce" id="sauce1" value="Marinara" onchange="sauceCheck(this)" autocomplete="off"><img src="../images/custom/marinara.jpg" height="60%" width="100%"></br>  Marinara
                             <div class="right"> </div>
                           </label>
                     <label class="btn btn-secondary">
-                            <input type="radio" name="sause" id="sause2" value="Alfredo" onchange="sauceCheck(this)" autocomplete="off"><img src="../images/custom/alfredo.jpg" height="60%" width="100%"></br> Alfredo
+                            <input type="radio" name="sauce" id="sauce2" value="Alfredo" onchange="sauceCheck(this)" autocomplete="off"><img src="../images/custom/alfredo.jpg" height="60%" width="100%"></br> Alfredo
                           </label>
                     <label class="btn btn-secondary">
-                            <input type="radio" name="sause" id="sause3" value="BBQ" onchange="sauceCheck(this)" autocomplete="off"><img src="../images/custom/bbq.jpg" height="60%" width="70%"></br> BBQ
+                            <input type="radio" name="sauce" id="sauce3" value="BBQ" onchange="sauceCheck(this)" autocomplete="off"><img src="../images/custom/bbq.jpg" height="60%" width="70%"></br> BBQ
                           </label>
                     <label class="btn btn-secondary">
-                            <input type="radio" name="sause" id="sause4" value="None" onchange="sauceCheck(this)" autocomplete="off"><font size="+10"> X</font></br> none
+                            <input type="radio" name="sauce" id="sauce4" value="None" onchange="sauceCheck(this)" autocomplete="off"><font size="+10"> X</font></br> none
                           </label>
                   </div>
 
@@ -950,20 +933,20 @@
                   <div class="container-fluid">
                     <div class="row">
                       <div class="col-lg-4">
-                        Chedder</br>
+                        Cheddar</br>
                         <img src="../images/custom/cheddar.jpg" height="60%" width="60%"></br>
                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
                           <label class="btn btn-secondary">
-                              <input type="radio" name="chedder" id="chedder1" autocomplete="off" value="left" onchange="cheeseCheck(this)"><i style='font-size:24px' class='fas'>&#x25d6;</i></br>Left
+                              <input type="radio" name="cheddar" id="cheddar1" autocomplete="off" value="left" onchange="cheeseCheck(this)"><i style='font-size:24px' class='fas'>&#x25d6;</i></br>Left
                             </label>
-                          <label id="label_ched"  class="btn btn-secondary">
-                              <input type="radio" name="chedder"  onchange="cheeseCheck(this)" id="chedder2" autocomplete="off"  value="centre" > <i class='fas fa-circle'></i></br>Whole
-                            </label>
-                          <label class="btn btn-secondary">
-                              <input type="radio" name="chedder" id="chedder3" onchange="cheeseCheck(this)" autocomplete="off"  value="right"> <i style='font-size:24px' class='fas'> &#9687;	</i></br>Right
+                          <label id="label_ched" class="btn btn-secondary">
+                              <input type="radio" name="cheddar"  onchange="cheeseCheck(this)" id="cheddar2" autocomplete="off"  value="centre" > <i class='fas fa-circle'></i></br>Whole
                             </label>
                           <label class="btn btn-secondary">
-                              <input type="radio" name="chedder" id="chedder4" value="none" onchange="cheeseCheck(this)" autocomplete="off"> X</br> None
+                              <input type="radio" name="cheddar" id="cheddar3" onchange="cheeseCheck(this)" autocomplete="off"  value="right"> <i style='font-size:24px' class='fas'> &#9687;	</i></br>Right
+                            </label>
+                          <label class="btn btn-secondary">
+                              <input type="radio" name="cheddar" id="cheddar4" value="none" onchange="cheeseCheck(this)" autocomplete="off"> X</br> None
                             </label>
                         </div>
                       </div>
@@ -1005,20 +988,6 @@
                       </div>
                     </div>
                   </div>
-
-
-
-                  <!-- <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                        <label class="btn btn-secondary active">
-                          <input type="radio" name="crust" id="crust1" autocomplete="off" value="Cheddar" onchange="cheeseCheck(this)"><img src="cheddar.jpg" height="60%" width="60%"></br>  Cheddar
-                        </label>
-                        <label class="btn btn-secondary">
-                          <input type="radio" name="crust" id="crust2" value="Parmigiano" onchange="cheeseCheck(this)" autocomplete="off"><img src="parmigiano.jpg" height="60%" width="60%"></br> Parmigiano
-                        </label>
-                        <label class="btn btn-secondary">
-                          <input type="radio" name="crust" id="crust3" autocomplete="off" value="Lactose Free" onchange="cheeseCheck(this)"><img src="no-moo.jpg" height="80%" width="60%"></br> Lactose Free
-                        </label>
-                      </div> -->
 
                 </div>
               </div>
@@ -1154,7 +1123,7 @@
                             <label class="btn btn-secondary">
                                   <input type="radio" name="pepper" id="pepper1" autocomplete="off" value="left" onchange="toppingCheck(this)"><i style='font-size:24px' class='fas'>&#x25d6;</i></br>Left
                                 </label>
-                            <label  id="label_pepper" class="btn btn-secondary">
+                            <label id="label_pepper" class="btn btn-secondary">
                                   <input type="radio" name="pepper"  onchange="toppingCheck(this)" id="pepper2" autocomplete="off"  value="centre" > <i class='fas fa-circle'></i></br>Whole
                                 </label>
                             <label class="btn btn-secondary">
