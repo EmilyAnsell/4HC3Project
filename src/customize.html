@@ -133,8 +133,35 @@
       // sendData(name, size, price);
     }
 
+    function sizeSpecial(name) {
+      size = name;
+      document.getElementById("chooseSize").innerHTML = size;
+      if (size == "Small") {
+        price = smallPrice;
+      } else if (size == "Medium") {
+        price = mediumPrice;
+      } else if (size == "Large") {
+        price = largePrice;
+      } else if (size == "Extra Large") {
+        price = exlargePrice;
+      }
+      // price = priceTop
+      document.getElementById("cost").innerHTML = "$" + price;
+      return price;
+
+      // sendData(name, size, price);
+    }
+
     function sauceCheck(that) {
       sauce = that.value;
+      document.getElementById("chooseSauce").innerHTML = sauce;
+      return sauce;
+
+
+      // sendData(name, size, price);
+    }
+    function sauceSpecial(name) {
+      sauce = name;
       document.getElementById("chooseSauce").innerHTML = sauce;
       return sauce;
 
@@ -149,6 +176,13 @@
 
       // sendData(name, size, price);
     }
+    function thickSpecial(name) {
+      thick = name;
+      document.getElementById("chooseCrust").innerHTML = name;
+      return thick;
+
+      // sendData(name, size, price);
+    }
 
     function doughCheck(that) {
       dough = that.value;
@@ -158,6 +192,11 @@
       // sendData(name, size, price);
     }
 
+    function doughSpecial(name) {
+      dough = name;
+      document.getElementById("chooseDough").innerHTML = name;
+      return dough;
+    }
 
     function pickTopping(that) {
       if (that.value == "Vegetables") {
@@ -230,14 +269,14 @@
       } else if ((that.name == "noMoo") && (sides != "none")) {
         document.getElementById("nomooChoice").innerHTML = " Lactose Free " + sides + "</br>";
         nomoo = {
-          name: "nomoo",
+          name: "lactose free",
           side: sides
         };
         cheese[2] = nomoo;
       } else if ((that.name == "noMoo") && (sides == "none")) {
         document.getElementById("nomooChoice").innerHTML = " ";
         nomoo = {
-          name: "nomoo",
+          name: "lactose free",
           side: sides
         };
         cheese[2] = nomoo;
@@ -247,115 +286,127 @@
       // sendData(name, size, price);
     }
 
+    function cheeseSpecial(name) {
+      if (name == "chedder") {
+        document.getElementById("chedderChoice").innerHTML = " Chedder both </br>";
+        chedder = {
+          name: "chedder",
+          side: "both"
+        };
+        cheese[0] = chedder;
+      }
+      return cheese;
+    }
+
     function toppingCheck(that) {
-      side = halfs(that);
+      sides = halfs(that);
       // cheese = " Chedder " + side;
-      if ((that.name == "pep") && (side != "none")) {
-        document.getElementById("pepChoice").innerHTML = " Pepperoni " + side + "</br>";
+      if ((that.name == "pep") && (sides != "none")) {
+        document.getElementById("pepChoice").innerHTML = " Pepperoni " + sides + "</br>";
         pep = {
           name: "pepperoni",
           side: sides
         };
         topping[0] = pep;
-      } else if ((that.name == "pep") && (side == "none")) {
+      } else if ((that.name == "pep") && (sides == "none")) {
         document.getElementById("pepChoice").innerHTML = " ";
         pep = {
           name: "pepperoni",
           side: sides
         };
         topping[0] = pep;
-      } else if ((that.name == "bacon") && (side != "none")) {
-        document.getElementById("baconChoice").innerHTML = " Bacon " + side + "</br>";
+      } else if ((that.name == "bacon") && (sides != "none")) {
+        document.getElementById("baconChoice").innerHTML = " Bacon " + sides + "</br>";
         bacon = {
           name: "bacon",
           side: sides
         };
         topping[1] = bacon;
-      } else if ((that.name == "bacon") && (side == "none")) {
+      } else if ((that.name == "bacon") && (sides == "none")) {
         document.getElementById("baconChoice").innerHTML = " ";
         bacon = {
           name: "bacon",
           side: sides
         };
         topping[1] = bacon;
-      } else if ((that.name == "saus") && (side != "none")) {
-        document.getElementById("sausChoice").innerHTML = " Sausage " + side + "</br>";
+      } else if ((that.name == "saus") && (sides != "none")) {
+        document.getElementById("sausChoice").innerHTML = " Sausage " + sides + "</br>";
         saus = {
           name: "sausage",
           side: sides
         };
         topping[2] = saus;
-      } else if ((that.name == "saus") && (side == "none")) {
+      } else if ((that.name == "saus") && (sides == "none")) {
         document.getElementById("sausChoice").innerHTML = " ";
         saus = {
           name: "sausage",
           side: sides
         };
         topping[2] = saus;
-      } else if ((that.name == "ham") && (side != "none")) {
-        document.getElementById("hamChoice").innerHTML = " Ham " + side + "</br>";
+      } else if ((that.name == "ham") && (sides != "none")) {
+        document.getElementById("hamChoice").innerHTML = " Ham " + sides + "</br>";
         ham = {
           name: "ham",
           side: sides
         };
         topping[3] = ham;
-      } else if ((that.name == "ham") && (side == "none")) {
+      } else if ((that.name == "ham") && (sides == "none")) {
         document.getElementById("hamChoice").innerHTML = " ";
         ham = {
           name: "ham",
           side: sides
         };
         topping[3] = ham;
-      } else if ((that.name == "pine") && (side != "none")) {
-        document.getElementById("pineChoice").innerHTML = " Pineapple " + side + "</br>";
+      } else if ((that.name == "pine") && (sides != "none")) {
+        document.getElementById("pineChoice").innerHTML = " Pineapple " + sides + "</br>";
         pine = {
           name: "pineapple",
           side: sides
         };
         topping[4] = pine;
-      } else if ((that.name == "pine") && (side == "none")) {
+      } else if ((that.name == "pine") && (sides == "none")) {
         document.getElementById("pineChoice").innerHTML = " ";
         pine = {
           name: "pineapple",
           side: sides
         };
         topping[4] = pine;
-      } else if ((that.name == "pepper") && (side != "none")) {
-        document.getElementById("pepperChoice").innerHTML = " Pepper " + side + "</br>";
+      } else if ((that.name == "pepper") && (sides != "none")) {
+        document.getElementById("pepperChoice").innerHTML = " Pepper " + sides + "</br>";
         pepper = {
           name: "pepper",
           side: sides
         };
         topping[5] = pepper;
-      } else if ((that.name == "pepper") && (side == "none")) {
+      } else if ((that.name == "pepper") && (sides == "none")) {
         document.getElementById("pepperChoice").innerHTML = " ";
         pepper = {
           name: "pepper",
           side: sides
         };
         topping[5] = pepper;
-      } else if ((that.name == "mush") && (side != "none")) {
-        document.getElementById("mushChoice").innerHTML = " Mushroom " + side + "</br>";
+      } else if ((that.name == "mush") && (sides != "none")) {
+        document.getElementById("mushChoice").innerHTML = " Mushroom " + sides + "</br>";
         mush = {
           name: "mushroom",
           side: sides
         };
         topping[6] = mush;
-      } else if ((that.name == "mush") && (side == "none")) {
+      } else if ((that.name == "mush") && (sides == "none")) {
         document.getElementById("mushChoice").innerHTML = " ";
         mush = {
           name: "mushroom",
           side: sides
         };
         topping[6] = mush;
-      } else if ((that.name == "spin") && (side != "none")) {
-        document.getElementById("spinChoice").innerHTML = " Spinach " + side + "</br>";
+      } else if ((that.name == "spin") && (sides != "none")) {
+        document.getElementById("spinChoice").innerHTML = " Spinach " + sides + "</br>";
         spin = {
           name: "spinach",
           side: sides
         };
         topping[7] = spin;
-      } else if ((that.name == "spin") && (side == "none")) {
+      } else if ((that.name == "spin") && (sides == "none")) {
         document.getElementById("spinChoice").innerHTML = " ";
         mush = {
           name: "mushroom",
@@ -365,6 +416,68 @@
       }
       return topping;
     }
+
+    function toppingSpecial(name) {
+      if (name == "pep") {
+        document.getElementById("pepChoice").innerHTML = " Pepperoni both</br>";
+        pep = {
+          name: "pepperoni",
+          side: "both"
+        };
+        topping[0] = pep;
+      } else if (name == "bacon") {
+        document.getElementById("baconChoice").innerHTML = " Bacon both</br>";
+        bacon = {
+          name: "bacon",
+          side: "both"
+        };
+        topping[1] = bacon;
+      } else if (name == "saus")  {
+        document.getElementById("sausChoice").innerHTML = " Sausage both </br>";
+        saus = {
+          name: "sausage",
+          side: "both"
+        };
+        topping[2] = saus;
+      } else if (name == "ham") {
+        document.getElementById("hamChoice").innerHTML = " Ham both </br>";
+        ham = {
+          name: "ham",
+          side: "both"
+        };
+        topping[3] = ham;
+      }  else if (name == "pine") {
+        document.getElementById("pineChoice").innerHTML = " Pineapple both </br>";
+        pine = {
+          name: "pineapple",
+          side: "both"
+        };
+        topping[4] = pine;
+      } else if (name == "pepper") {
+        document.getElementById("pepperChoice").innerHTML = " Pepper both </br>";
+        pepper = {
+          name: "pepper",
+          side: "both"
+        };
+        topping[5] = pepper;
+      } else if (name == "mush") {
+        document.getElementById("mushChoice").innerHTML = " Mushroom both </br>";
+        mush = {
+          name: "mushroom",
+          side: "both"
+        };
+        topping[6] = mush;
+      } else if (name == "spin") {
+        document.getElementById("spinChoice").innerHTML = " Spinach both </br>";
+        spin = {
+          name: "spinach",
+          side: "both"
+        };
+        topping[7] = spin;
+      }
+      return topping;
+    }
+
 
     function getQueryVariable(variable) {
       var query = window.location.search.substring(1);
@@ -423,26 +536,104 @@
 
 
 
-
-
-
       var special = getQueryVariable("signature");
-      var size = getQueryVariable("size");
-      console.log(special);
+      var sentSize = getQueryVariable("size");
 
-
-      if (special == "canadian") {
-        console.log('TEST');
-        // document.getElementById('crust2').checked;
-      } else {
-        console.log('HMMM');
-        document.getElementById('crust2').checked = true;
+      if (sentSize == "Small"){
+        $("#label_s").addClass("active");
+      }else if (sentSize == "Medium"){
+        $("#label_m").addClass("active");
+      }else if (sentSize == "Large"){
+        $("#label_l").addClass("active");
+      }else if (sentSize == "Extra%20Large"){
+        $("#label_xl").addClass("active");
       }
 
-      testy = document.getElementById('Small').class;
-      console.log(testy);
+      if (special == "MeatLovers") {
+        console.log("MeatLover");
+        $("#label_mari").addClass("active");
+        $("#label_reg").addClass("active");
+        $("#label_white").addClass("active");
+        $("#label_ched").addClass("active");
+
+        $("#label_pep").addClass("active");
+        $("#label_bacon").addClass("active");
+        $("#label_saus").addClass("active");
+        $("#label_ham").addClass("active");
+
+        sizeSpecial(sentSize);
+
+        sauceSpecial("Marinara");
+        thickSpecial("Normal");
+        doughSpecial("White");
+        cheeseSpecial("chedder");
+
+        toppingSpecial("pep");
+        toppingSpecial("bacon");
+        toppingSpecial("saus");
+        toppingSpecial("ham");
+
+
+      } else if ( special == "Hawaiian") {
+        $("#label_mari").addClass("active");
+        $("#label_reg").addClass("active");
+        $("#label_white").addClass("active");
+        $("#label_ched").addClass("active");
+
+        $("#label_ham").addClass("active");
+        $("#label_pine").addClass("active");
+        sizeSpecial(sentSize);
+        sauceSpecial("Marinara");
+        thickSpecial("Normal");
+        doughSpecial("White");
+        cheeseSpecial("chedder");
+
+        toppingSpecial("ham");
+        toppingSpecial("pine");
+
+      }else if ( special == "Veggie") {
+        $("#label_mari").addClass("active");
+        $("#label_reg").addClass("active");
+        $("#label_white").addClass("active");
+        $("#label_ched").addClass("active");
+
+        $("#label_spin").addClass("active");
+        $("#label_mush").addClass("active");
+        $("#label_pepper").addClass("active");
+        sizeSpecial(sentSize);
+        sauceSpecial("Marinara");
+        thickSpecial("Normal");
+        doughSpecial("White");
+        cheeseSpecial("chedder");
+
+        toppingSpecial("spin");
+        toppingSpecial("mush");
+        toppingSpecial("pepper");
+
+      }else if ( special == "Canadian") {
+        $("#label_mari").addClass("active");
+        $("#label_reg").addClass("active");
+        $("#label_white").addClass("active");
+        $("#label_ched").addClass("active");
+
+        $("#label_pep").addClass("active");
+        $("#label_bacon").addClass("active");
+        $("#label_mush").addClass("active");
+        sizeSpecial(sentSize);
+        sauceSpecial("Marinara");
+        thickSpecial("Normal");
+        doughSpecial("White");
+        cheeseSpecial("chedder");
+
+        toppingSpecial("pep");
+        toppingSpecial("bacon");
+        toppingSpecial("mush");
+
+      }
+
 
     });
+    special = getQueryVariable("signature");
 
 
     function sendPizzaData(sizes, doughs, sauces, thickness, cheeses, toppings, prices) {
@@ -468,14 +659,21 @@
           toppingsString += toppings[i].name + "-" + toppings[i].side + ",";
         }
       }
-      toppingsString += toppings[i].name + "-" + toppings[i].side;
+      if(!(toppings[i].side == "none"))
+      {
+        toppingsString += toppings[i].name + "-" + toppings[i].side;
+      }
 
       for (var i = 0; i < cheeses.length - 1; i++) {
         if (!(cheese[i].side == "none")) {
           cheeseString += cheeses[i].name + "-" + cheeses[i].side + ",";
         }
       }
-      cheeseString += cheeses[i].name + "-" + cheeses[i].side;
+
+      if (!(cheese[i].side == "none"))
+      {
+        cheeseString += cheeses[i].name + "-" + cheeses[i].side;
+      }
 
       xmlhttp.open("POST", "http://localhost:3000/pizza/add", true);
       xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -495,32 +693,50 @@
       var x7 = document.forms["myForm"]["noMoo"].value;
 
 
-      if ((x1 == "")) {
-        alert("Please Pick a Size");
-        return false;
-      } else if ((x2 == "")) {
-        alert("Please Pick a Sause");
-        return false;
-      } else if ((x3 == "")) {
-        alert("Please Pick a Thickness");
-        return false;
-      } else if ((x4 == "")) {
-        alert("Please Pick a Crust");
-        return false;
-      } else if ((x5 == "") && (x6 == "") && (x7 == "")) {
-        alert("Please Pick a Cheese");
-        return false;
-      } else {
+      // if ((size == "")) {
+      //   alert("Please Pick a Size");
+      //   return false;
+      // } else if (sauce == "") {
+      //   alert("Please Pick a Sauce");
+      //   return false;
+      // } else if (thick == "") {
+      //   alert("Please Pick a Thickness");
+      //   return false;
+      // } else if (dough == "") {
+      //   alert("Please Pick a Crust");
+      //   return false;
+      // } else if (cheese == "") {
+      //   alert("Please Pick a Cheese");
+      //   return false;
+      if (special == false){
+        if (x1 == "")  {
+          alert("Please Pick a Size");
+          return false;
+        } else if (x2 == "")  {
+          alert("Please Pick a Sauce");
+          return false;
+        } else if (x3 == "") {
+          alert("Please Pick a Thickness");
+          return false;
+        } else if (x4 == "") {
+          alert("Please Pick a Crust");
+          return false;
+        } else if ((x5 == "") && (x6 =="") && (x7 =="")) {
+          alert("Please Pick a Cheese");
+          return false;
+        } else {
+          alert(size + dough + sauce + thick + cheese + topping + price);
+          sendPizzaData(size, dough, sauce, thick, cheese, topping, price);
+          return false;
+        }
+      }else {
         alert(size + dough + sauce + thick + cheese + topping + price);
         sendPizzaData(size, dough, sauce, thick, cheese, topping, price);
-        // sendPizzaData("jdga", "dough", "sauce", "thick", [{name: "Mushroom", side: "both"}],  [{name: "TESTSHROM", side: "both"}], "10");
-        // window.location.href = 'sides.html';
         return false;
       }
 
-
-
     }
+
   </script>
 
 
@@ -533,6 +749,7 @@
     <a class="navbar-brand" href="checkout.html"> <i style='font-size:24px' class='fas'> &#xf07a;		</i> </a>
   </nav>
   </br>
+
 
   <div class="container-fluid">
     <div class="row">
@@ -622,16 +839,16 @@
                   <form name="myForm" onsubmit="return validateForm()" method="post">
                     <div class="btn-group-toggle" data-toggle="buttons">
                       <b>Available Sizes:</b>
-                      <label class="btn btn-secondary btn-circle btn-s">
+                      <label class="btn btn-secondary btn-circle btn-s" id="label_s">
                             <input type="radio" name="size" id="Small" value="Small" autocomplete="off" onchange="sizeCheck(this)"> S
                           </label>
-                      <label class="btn btn-secondary btn-circle btn-m">
+                      <label class="btn btn-secondary btn-circle btn-m" id="label_m">
                             <input type="radio" name="size" id="Medium" value="Medium" onchange="sizeCheck(this)" autocomplete="off"> M
                           </label>
-                      <label class="btn btn-secondary btn-circle btn-lg">
+                      <label class="btn btn-secondary btn-circle btn-lg" id="label_l">
                             <input type="radio" name="size" id="Large" autocomplete="off" value="Large" onchange="sizeCheck(this)"> L
                           </label>
-                      <label class="btn btn-secondary btn-circle btn-xl">
+                      <label class="btn btn-secondary btn-circle btn-xl" id="label_xl">
                             <input type="radio" name="size" id="X-Large" autocomplete="off" value="Extra Large" onchange="sizeCheck(this)"> XL
                           </label>
                     </div>
@@ -655,7 +872,7 @@
                 <div class="card-body">
 
                   <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-secondary">
+                    <label id="label_mari" class="btn btn-secondary">
                             <input type="radio" name="sause" id="sause1" value="Marinara" onchange="sauceCheck(this)" autocomplete="off"><img src="../images/custom/marinara.jpg" height="60%" width="100%"></br>  Marinara
                             <div class="right"> </div>
                           </label>
@@ -693,7 +910,7 @@
                     <label class="btn btn-secondary">
                                       <input type="radio" name="thick" id="thick1" value="Thin" onchange="thickCheck(this)" autocomplete="off" > Thin
                                     </label>
-                    <label class="btn btn-secondary">
+                    <label id="label_reg" class="btn btn-secondary">
                                       <input type="radio" name="thick" id="thick2" value="Regular" onchange="thickCheck(this)"  autocomplete="off"> Regular
                                     </label>
                     <label class="btn btn-secondary">
@@ -703,7 +920,7 @@
                   </br>
                   </br>
                   <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-secondary">
+                    <label id="label_white" class="btn btn-secondary">
                                       <input type="radio" name="crust" id="crust1" value="White" onchange="doughCheck(this)" autocomplete="off" ><img src="../images/custom/white.jpg" height="80%" width="60%" ></br>  White
                                     </label>
                     <label class="btn btn-secondary">
@@ -739,7 +956,7 @@
                           <label class="btn btn-secondary">
                               <input type="radio" name="chedder" id="chedder1" autocomplete="off" value="left" onchange="cheeseCheck(this)"><i style='font-size:24px' class='fas'>&#x25d6;</i></br>Left
                             </label>
-                          <label class="btn btn-secondary">
+                          <label id="label_ched"  class="btn btn-secondary">
                               <input type="radio" name="chedder"  onchange="cheeseCheck(this)" id="chedder2" autocomplete="off"  value="centre" > <i class='fas fa-circle'></i></br>Whole
                             </label>
                           <label class="btn btn-secondary">
@@ -839,7 +1056,7 @@
                             <label class="btn btn-secondary">
                                 <input type="radio" name="pep" id="pep1" autocomplete="off" value="left" onchange="toppingCheck(this)"><i style='font-size:24px' class='fas'>&#x25d6;</i></br>Left
                               </label>
-                            <label class="btn btn-secondary">
+                            <label id="label_pep" class="btn btn-secondary">
                                 <input type="radio" name="pep"  onchange="toppingCheck(this)" id="pep2" autocomplete="off"  value="centre" > <i class='fas fa-circle'></i></br>Whole
                               </label>
                             <label class="btn btn-secondary">
@@ -857,7 +1074,7 @@
                             <label class="btn btn-secondary">
                                 <input type="radio" name="bacon" id="bacon1" autocomplete="off" value="left" onchange="toppingCheck(this)"><i style='font-size:24px' class='fas'>&#x25d6;</i></br>Left
                               </label>
-                            <label class="btn btn-secondary">
+                            <label id="label_bacon" class="btn btn-secondary">
                                 <input type="radio" name="bacon"  onchange="toppingCheck(this)" id="bacon2" autocomplete="off"  value="centre" > <i class='fas fa-circle'></i></br>Whole
                               </label>
                             <label class="btn btn-secondary">
@@ -875,7 +1092,7 @@
                             <label class="btn btn-secondary">
                                 <input type="radio" name="saus" id="saus1" autocomplete="off" value="left" onchange="toppingCheck(this)"><i style='font-size:24px' class='fas'>&#x25d6;</i></br>Left
                               </label>
-                            <label class="btn btn-secondary">
+                            <label id="label_saus" class="btn btn-secondary">
                                 <input type="radio" name="saus"  onchange="toppingCheck(this)" id="saus2" autocomplete="off"  value="centre" > <i class='fas fa-circle'></i></br>Whole
                               </label>
                             <label class="btn btn-secondary">
@@ -893,7 +1110,7 @@
                             <label class="btn btn-secondary">
                                   <input type="radio" name="ham" id="ham1" autocomplete="off" value="left" onchange="toppingCheck(this)"><i style='font-size:24px' class='fas'>&#x25d6;</i></br>Left
                                 </label>
-                            <label class="btn btn-secondary">
+                            <label id="label_ham" class="btn btn-secondary">
                                   <input type="radio" name="ham"  onchange="toppingCheck(this)" id="ham2" autocomplete="off"  value="centre" > <i class='fas fa-circle'></i></br>Whole
                                 </label>
                             <label class="btn btn-secondary">
@@ -919,7 +1136,7 @@
                             <label class="btn btn-secondary">
                                   <input type="radio" name="pine" id="pine1" autocomplete="off" value="left" onchange="toppingCheck(this)"><i style='font-size:24px' class='fas'>&#x25d6;</i></br>Left
                                 </label>
-                            <label class="btn btn-secondary">
+                            <label id="label_pine" class="btn btn-secondary">
                                   <input type="radio" name="pine"  onchange="toppingCheck(this)" id="pine2" autocomplete="off"  value="centre" > <i class='fas fa-circle'></i></br>Whole
                                 </label>
                             <label class="btn btn-secondary">
@@ -937,7 +1154,7 @@
                             <label class="btn btn-secondary">
                                   <input type="radio" name="pepper" id="pepper1" autocomplete="off" value="left" onchange="toppingCheck(this)"><i style='font-size:24px' class='fas'>&#x25d6;</i></br>Left
                                 </label>
-                            <label class="btn btn-secondary">
+                            <label  id="label_pepper" class="btn btn-secondary">
                                   <input type="radio" name="pepper"  onchange="toppingCheck(this)" id="pepper2" autocomplete="off"  value="centre" > <i class='fas fa-circle'></i></br>Whole
                                 </label>
                             <label class="btn btn-secondary">
@@ -955,7 +1172,7 @@
                             <label class="btn btn-secondary">
                                   <input type="radio" name="mush" id="mush1" autocomplete="off" value="left" onchange="toppingCheck(this)"><i style='font-size:24px' class='fas'>&#x25d6;</i></br>Left
                                 </label>
-                            <label class="btn btn-secondary">
+                            <label id="label_mush" class="btn btn-secondary">
                                   <input type="radio" name="mush"  onchange="toppingCheck(this)" id="mush2" autocomplete="off"  value="centre" > <i class='fas fa-circle'></i></br>Whole
                                 </label>
                             <label class="btn btn-secondary">
@@ -973,7 +1190,7 @@
                             <label class="btn btn-secondary">
                                     <input type="radio" name="spin" id="spin1" autocomplete="off" value="left" onchange="toppingCheck(this)"><i style='font-size:24px' class='fas'>&#x25d6;</i></br>Left
                                   </label>
-                            <label class="btn btn-secondary">
+                            <label id="label_spin" class="btn btn-secondary">
                                     <input type="radio" name="spin"  onchange="toppingCheck(this)" id="spin2" autocomplete="off"  value="centre" > <i class='fas fa-circle'></i></br>Whole
                                   </label>
                             <label class="btn btn-secondary">
