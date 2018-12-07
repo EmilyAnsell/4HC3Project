@@ -245,7 +245,7 @@
     function cheeseCheck(that) {
       sides = halfs(that);
       if ((that.name == "cheddar") && (sides != "none")) {
-        document.getElementById("cheddarChoice").innerHTML = " cheddar " + sides + "</br>";
+        document.getElementById("cheddarChoice").innerHTML = " Cheddar " + sides + "</br>";
         cheddar = {
           name: "cheddar",
           side: sides
@@ -294,7 +294,7 @@
 
     function cheeseSpecial(name) {
       if (name == "cheddar") {
-        document.getElementById("cheddarChoice").innerHTML = " cheddar both </br>";
+        document.getElementById("cheddarChoice").innerHTML = " Cheddar both </br>";
         cheddar = {
           name: "cheddar",
           side: "both"
@@ -552,6 +552,7 @@
       } else if (sentSize == "Large") {
         $("#label_l").addClass("active");
       } else if (sentSize == "Extra%20Large") {
+        sentSize="Extra Large";
         $("#label_xl").addClass("active");
       }
 
@@ -798,6 +799,7 @@
                 <span id="cost"> -- </span>
               </th>
             </tr>
+
 
           </table>
         </div>
