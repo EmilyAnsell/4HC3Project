@@ -138,7 +138,7 @@
         var size = "s";
         var dough = "white";
         var sauce = "marinara";
-        var cheese = [{name: "chedder", side: "both"}];
+        var cheese = [{name: "Cheddar", side: "both"}];
         var toppings = [{}];
         var price = 15/3;
 
@@ -152,7 +152,7 @@
         var size = "m";
         var dough = "white";
         var sauce = "marinara";
-        var cheese = [{name: "chedder", side: "both"}];
+        var cheese = [{name: "Cheddar", side: "both"}];
         var toppings = [{name: "Pepperoni", side: "both"}, {name: "Pepper", side: "both"}, {name: "Mushroom", side: "both"}];
         var price = 12;
 
@@ -164,7 +164,7 @@
         var size = "n";
         var dough = "white";
         var sauce = "marinara";
-        var cheese = [{name: "chedder", side: "left"}, {name: "parmigiano", side: "right"}];
+        var cheese = [{name: "Cheddar", side: "left"}, {name: "parmigiano", side: "right"}];
         var toppings = [{name: "Pepperoni", side: "both"}];
         var price = 8;
 
@@ -176,7 +176,7 @@
         var size = "m";
         var dough = "white";
         var sauce = "marinara";
-        var cheese = [{name: "chedder", side: "both"}];
+        var cheese = [{name: "Cheddar", side: "both"}];
         var toppings = [{name: "Mushroom", side: "both"}, {name: "Pepper", side: "both"}, {name: "Pineapple", side: "both"}];
         var price = 12;
 
@@ -217,9 +217,9 @@
         }
         cheeseString += cheese[i].name + "-" + cheese[i].side;
 
-        xmlhttp.open("POST","http://localhost:3000/pizza/add",true);
+        xmlhttp.open("POST","pizza/add",true);
         xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-        xmlhttp.send("size=" + size + "&dough=" + dough + "&sauce=" + sauce + +"&thickness=Regular"+"&cheese=" + cheeseString + "&toppings=" + toppingsString + "&price=" + price);
+        xmlhttp.send("size=" + size + "&dough=" + dough + "&sauce=" + sauce +"&thickness=Regular"+"&cheese=" + cheeseString + "&toppings=" + toppingsString + "&price=" + price);
       }
 
       function sendSilentPizzaData(size, dough, sauce, cheese, toppings, price)

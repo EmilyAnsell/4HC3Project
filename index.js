@@ -5,7 +5,7 @@ var bodyParser     =        require("body-parser");
 var sides = [];
 var pizzas = [];
 var currentUser;
-const port = 3000
+const port = process.env.PORT || 3000
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use('/images', express.static('images'));
@@ -57,3 +57,7 @@ app.post('/pizza/add', (req, res) =>{
 	res.status(200).end("yes");
 });
 app.listen(port, () => console.log('Example app listening on port ' + port + '!'));
+app.get('/', (req, res) => {
+    res.send('<h1><marquee>Deployment with ▲Now</marquee></h1>')
+    res.end()
+})
