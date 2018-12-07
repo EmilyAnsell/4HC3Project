@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express()
 const fs = require('fs')
+const path = require('path')
+const opn = require('opn')
 var bodyParser     =        require("body-parser");
 var sides = [];
 var pizzas = [];
@@ -8,8 +10,8 @@ var currentUser;
 const port = process.env.PORT || 3000
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use('/images', express.static('images'));
-app.use(express.static('src'));
+app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use(express.static(path.join(__dirname, 'src')));
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -56,8 +58,4 @@ app.post('/pizza/add', (req, res) =>{
 	pizzas.push(req.body);
 	res.status(200).end("yes");
 });
-app.listen(port, () => console.log('Example app listening on port ' + port + '!'));
-app.get('/', (req, res) => {
-    res.send('<h1><marquee>Deployment with ▲Now</marquee></h1>')
-    res.end()
-})
+app.listen(port, () => opn('http://localhost:3000/home.html'));
