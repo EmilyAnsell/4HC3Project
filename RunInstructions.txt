@@ -1,0 +1,8 @@
+Pizza 4 U Run Instructions:
+
+1) Open a command line/terminal session.
+2) Check that node/npm is installed on your computer. This can be done by running "node -v" and "npm -v" in the command line.
+	2.1) If node/npm is not installed, it can be downloaded here: https://nodejs.org/en/download/ 
+3) Within the command line interface, navigate to the project directory - anywhere within "4HC3Project".
+4) Using the command line, run "npm i" to install any necessesary dependancies for the project.
+5) Using the command line, run "npm start". The Pizza 4 U website will open in your default web browser.
